@@ -45,6 +45,7 @@ OTHER_FILES += \
     qtc_packaging/debian_harmattan/compat \
     qtc_packaging/debian_harmattan/changelog \
     qml/* \
+    qml/BaseWindow.qml \
     qml/BaseWindow.qml
 
 RESOURCES += \
