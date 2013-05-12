@@ -11,8 +11,9 @@ BaseWindow {
     contentItem: Flickable {
         id: contentArea
         anchors.fill: parent
-        contentWidth: width * 3
+        contentWidth: (interactive) ? width * 2 : width * 3
         contentHeight: height
+        boundsBehavior: Flickable.StopAtBounds
 
         Row {
             height: parent.height
@@ -25,9 +26,21 @@ BaseWindow {
             }
 
             // Page items
-            DictPage {}
-            HistoryPage {}
-            AboutPage {}
+            DictPage { id: dictPage }
+            HistoryPage { id: historyPage }
+            AboutPage { id: aboutPage }
+        }
+
+        property int __lastX: 0
+        onMovementStarted: {
+            __lastX = contentX
+        }
+        onMovementEnded: {
+            var delta = (contentX - __lastX)
+            if (delta > 0)
+                historyTab.checked = true
+            else if (delta < 0)
+                dictTab.checked = true
         }
     }
 
@@ -42,15 +55,46 @@ BaseWindow {
 
         ButtonRow {
             TabButton {
+                id: dictTab
                 iconSource: "image://theme/icon-m-toolbar-list"
                 checked: true
             }
             TabButton {
+                id: historyTab
                 iconSource: "image://theme/icon-m-toolbar-history"
             }
             TabButton {
+                id: aboutTab
                 iconSource: "image://theme/icon-m-toolbar-update"
             }
         }
     }
+
+    state: "dict"
+    states: [
+        State {
+            name: "dict"
+            when: dictTab.checked
+            PropertyChanges { target: contentArea; contentX: dictPage.x; interactive: true }
+        },
+        State {
+            name: "history"
+            when: historyTab.checked
+            PropertyChanges { target: contentArea; contentX: historyPage.x; interactive: true }
+        },
+        State {
+            name: "about"
+            when: aboutTab.checked
+            PropertyChanges { target: contentArea; contentX: aboutPage.x; interactive: false }
+        }
+    ]
+    transitions: [
+        Transition {
+            to: "*"
+            NumberAnimation {
+                target: contentArea; property: "contentX"; duration: 200
+                easing.type: Easing.OutCubic
+            }
+        }
+    ]
 }
