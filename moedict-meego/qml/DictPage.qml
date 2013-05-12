@@ -14,7 +14,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.margins: UiConstants.DefaultMargin
-        placeholderText: "搜尋教育部重編國語辭典"
+        placeholderText: "搜尋注音、拼音或國字"
     }
 
     Flickable {
@@ -62,20 +62,7 @@ Item {
                 }
             }
 
-            BorderImage {
-                source: "image://theme/meegotouch-countbubble-background"
-                border.left: 10; border.right: 10
-                border.top: 10; border.bottom: 10
-                width: __defType.width + 10
-                height: __defType.height + 6
-
-                Text {
-                    id: __defType
-                    anchors.centerIn: parent
-                    font: UiConstants.SmallTitleFont
-                    text: "名"
-                }
-            }
+            SectionBubble { text: "名" }
 
             Label {
                 width: parent.width
@@ -85,6 +72,17 @@ Item {
                     "<li>事物發生的開端或徵兆。<br>韓非子·說林上：「聖人見微以知萌，見端以知末。」<br>漢·蔡邕·對詔問灾異八事：「以杜漸防萌，則其救也。」</li>" +
                     "<li>人民。<br>如：「萌黎」、「萌隸」。<br>通「氓」。</li>" +
                     "<li>姓。如五代時蜀有萌慮。</li>" +
+                    "</ol>"
+            }
+
+            SectionBubble { text: "動" }
+
+            Label {
+                width: parent.width
+                wrapMode: Text.Wrap
+                text: "<ol>" +
+                    "<li>發芽。<br>如：「萌芽」。<br>楚辭·王逸·九思·傷時：「明風習習兮龢暖，百草萌兮華榮。」</li>" +
+                    "<li>發生。<br>如：「故態復萌」。<br>管子·牧民：「惟有道者，能備患於未形也，故禍不萌。」<br>三國演義·第一回：「若萌異心，必獲惡報。」</li>" +
                     "</ol>"
             }
         }

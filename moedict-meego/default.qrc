@@ -7,9 +7,14 @@
         <file>qml/AboutPage.qml</file>
         <file>qml/AppViewHeader.qml</file>
         <file>qml/SearchField.qml</file>
+        <file>qml/SectionBubble.qml</file>
     </qresource>
     <qresource prefix="/theme">
         <file alias="app-meegotouch-view-header-fixed-pressed">theme/app-meegotouch-view-header-fixed-pressed.png</file>
         <file alias="app-meegotouch-view-header-fixed">theme/app-meegotouch-view-header-fixed.png</file>
+    </qresource>
+    <qresource prefix="/app-icon">
+        <file alias="medium">moedictmeego64.png</file>
+        <file alias="large">moedictmeego80.png</file>
     </qresource>
 </RCC>

@@ -9,13 +9,13 @@ Item {
 
     AppViewHeader {
         id: header
-        text: "History"
+        text: "歷程紀錄"
 
         SheetButton {
             anchors.right: parent.paddingItem.right
             anchors.verticalCenter: parent.paddingItem.verticalCenter
             platformStyle.inverted: true
-            text: "Clear"
+            text: "清除"
         }
     }
 
