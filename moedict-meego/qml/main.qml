@@ -18,10 +18,16 @@ BaseWindow {
             height: parent.height
 
             // Common API for Pages
-            property alias itemWidth: parent.width
+            property alias itemHeight: contentArea.height
+            property alias itemWidth: contentArea.width
             function window() {
                 return appWindow
             }
+
+            // Page items
+            DictPage {}
+            HistoryPage {}
+            AboutPage {}
         }
     }
 

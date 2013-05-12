@@ -46,7 +46,10 @@ OTHER_FILES += \
     qtc_packaging/debian_harmattan/changelog \
     qml/* \
     qml/BaseWindow.qml \
-    qml/BaseWindow.qml
+    qml/BaseWindow.qml \
+    qml/DictPage.qml \
+    qml/HistoryPage.qml \
+    qml/AboutPage.qml
 
 RESOURCES += \
     default.qrc

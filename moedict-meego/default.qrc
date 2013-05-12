@@ -4,5 +4,8 @@
         <file>qml/BaseWindow.qml</file>
         <file>theme/app-meegotouch-view-header-fixed-pressed.png</file>
         <file>theme/app-meegotouch-view-header-fixed.png</file>
+        <file>qml/DictPage.qml</file>
+        <file>qml/HistoryPage.qml</file>
+        <file>qml/AboutPage.qml</file>
     </qresource>
 </RCC>
