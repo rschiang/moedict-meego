@@ -52,7 +52,8 @@ OTHER_FILES += \
     qml/AboutPage.qml \
     qml/AppViewHeader.qml \
     qml/SearchField.qml \
-    qml/SectionBubble.qml
+    qml/SectionBubble.qml \
+    qml/SectionHeader.qml
 
 RESOURCES += \
     default.qrc

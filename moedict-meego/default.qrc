@@ -8,6 +8,7 @@
         <file>qml/AppViewHeader.qml</file>
         <file>qml/SearchField.qml</file>
         <file>qml/SectionBubble.qml</file>
+        <file>qml/SectionHeader.qml</file>
     </qresource>
     <qresource prefix="/theme">
         <file alias="app-meegotouch-view-header-fixed-pressed">theme/app-meegotouch-view-header-fixed-pressed.png</file>
