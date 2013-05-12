@@ -9,7 +9,7 @@ Image {
     height: appWindow.inPortrait ?  UiConstants.HeaderDefaultHeightPortrait : UiConstants.HeaderDefaultHeightLandcape
 
     // Properties
-    property Item paddingItem: __paddingItem
+    property alias paddingItem: __paddingItem
     property alias text: __headerText.text
 
     Item {

@@ -9,12 +9,15 @@ Item {
     AppViewHeader {
         text: "History"
 
-        Button {
+        SheetButton {
             anchors.right: parent.paddingItem.right
             anchors.verticalCenter: parent.paddingItem.verticalCenter
             text: "Clear"
+            platformStyle.inverted: true
         }
     }
+
+    Sheet {}
 
     ButtonColumn {
         anchors.centerIn: parent
