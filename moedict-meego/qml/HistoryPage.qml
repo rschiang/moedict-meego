@@ -12,12 +12,10 @@ Item {
         SheetButton {
             anchors.right: parent.paddingItem.right
             anchors.verticalCenter: parent.paddingItem.verticalCenter
-            text: "Clear"
             platformStyle.inverted: true
+            text: "Clear"
         }
     }
-
-    Sheet {}
 
     ButtonColumn {
         anchors.centerIn: parent
