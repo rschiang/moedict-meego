@@ -49,7 +49,8 @@ OTHER_FILES += \
     qml/BaseWindow.qml \
     qml/DictPage.qml \
     qml/HistoryPage.qml \
-    qml/AboutPage.qml
+    qml/AboutPage.qml \
+    qml/AppViewHeader.qml
 
 RESOURCES += \
     default.qrc

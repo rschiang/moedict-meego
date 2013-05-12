@@ -7,5 +7,6 @@
         <file>qml/DictPage.qml</file>
         <file>qml/HistoryPage.qml</file>
         <file>qml/AboutPage.qml</file>
+        <file>qml/AppViewHeader.qml</file>
     </qresource>
 </RCC>
