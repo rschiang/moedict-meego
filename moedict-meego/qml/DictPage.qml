@@ -6,6 +6,8 @@ Item {
     width: parent.itemWidth
     height: parent.itemHeight
 
+    AppViewHeader { text: "萌典" }
+
     ButtonColumn {
         anchors.centerIn: parent
 

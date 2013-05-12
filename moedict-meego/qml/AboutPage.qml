@@ -6,6 +6,8 @@ Item {
     width: parent.itemWidth
     height: parent.itemHeight
 
+    AppViewHeader { text: "About MoeDict" }
+
     ButtonColumn {
         anchors.centerIn: parent
 

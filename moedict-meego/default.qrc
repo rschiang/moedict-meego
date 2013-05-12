@@ -2,11 +2,13 @@
     <qresource prefix="/">
         <file>qml/main.qml</file>
         <file>qml/BaseWindow.qml</file>
-        <file>theme/app-meegotouch-view-header-fixed-pressed.png</file>
-        <file>theme/app-meegotouch-view-header-fixed.png</file>
         <file>qml/DictPage.qml</file>
         <file>qml/HistoryPage.qml</file>
         <file>qml/AboutPage.qml</file>
         <file>qml/AppViewHeader.qml</file>
+    </qresource>
+    <qresource prefix="/theme">
+        <file alias="app-meegotouch-view-header-fixed-pressed">theme/app-meegotouch-view-header-fixed-pressed.png</file>
+        <file alias="app-meegotouch-view-header-fixed">theme/app-meegotouch-view-header-fixed.png</file>
     </qresource>
 </RCC>

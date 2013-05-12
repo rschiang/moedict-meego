@@ -22,7 +22,7 @@ Image {
             id: __headerText
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: UiConstants.FontXLarge
+            font: UiConstants.HeaderFont
             color: "white"
             visible: (text != "")
         }

@@ -6,6 +6,16 @@ Item {
     width: parent.itemWidth
     height: parent.itemHeight
 
+    AppViewHeader {
+        text: "History"
+
+        Button {
+            anchors.right: parent.paddingItem.right
+            anchors.verticalCenter: parent.paddingItem.verticalCenter
+            text: "Clear"
+        }
+    }
+
     ButtonColumn {
         anchors.centerIn: parent
 
