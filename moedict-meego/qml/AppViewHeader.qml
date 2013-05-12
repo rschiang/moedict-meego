@@ -6,6 +6,7 @@ Image {
     source: "qrc:/theme/app-meegotouch-view-header-fixed"
     anchors.left: parent.left; anchors.top: parent.top
     anchors.right: parent.right;
+    height: appWindow.inPortrait ?  UiConstants.HeaderDefaultHeightPortrait : UiConstants.HeaderDefaultHeightLandcape
 
     // Properties
     property Item paddingItem: __paddingItem
