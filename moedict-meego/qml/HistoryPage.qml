@@ -1,5 +1,6 @@
 import QtQuick 1.1
-import com.nokia.meego 1.0
+import com.nokia.meego 1.1
+import com.nokia.extras 1.1
 
 Item {
     id: page
@@ -7,6 +8,7 @@ Item {
     height: parent.itemHeight
 
     AppViewHeader {
+        id: header
         text: "History"
 
         SheetButton {
@@ -17,11 +19,15 @@ Item {
         }
     }
 
-    ButtonColumn {
-        anchors.centerIn: parent
+    Flickable {
+        anchors.top: header.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
 
-        Button { text: "Lorem Ipsum" }
-        Button { text: "Donor Amet" }
-        Button { text: "Versi Sali" }
+        Column {
+            id: historyList
+            width: page.width
+        }
     }
 }

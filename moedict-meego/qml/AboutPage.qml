@@ -6,13 +6,5 @@ Item {
     width: parent.itemWidth
     height: parent.itemHeight
 
-    AppViewHeader { text: "About MoeDict" }
-
-    ButtonColumn {
-        anchors.centerIn: parent
-
-        Button { text: "Lorem Ipsum" }
-        Button { text: "Donor Amet" }
-        Button { text: "Versi Sali" }
-    }
+    AppViewHeader { id: header; text: "About MoeDict" }
 }
