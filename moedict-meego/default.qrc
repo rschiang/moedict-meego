@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>qml/main.qml</file>
         <file>qml/BaseWindow.qml</file>
+        <file>theme/app-meegotouch-view-header-fixed-pressed.png</file>
+        <file>theme/app-meegotouch-view-header-fixed.png</file>
     </qresource>
 </RCC>

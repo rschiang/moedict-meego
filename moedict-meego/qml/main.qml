@@ -4,23 +4,23 @@ import com.nokia.meego 1.0
 BaseWindow {
     id: appWindow
 
-    contentItem: Item {
+    Component.onCompleted: {
+        if (theme.color != undefined) theme.color = "14"
+    }
+
+    contentItem: Flickable {
         id: contentArea
         anchors.fill: parent
+        contentWidth: width * 3
+        contentHeight: height
 
-        Image {
-            id: viewHeader
-            source: "image://theme/color14-meegotouch-view-header-fixed"
-            anchors.left: parent.left; anchors.top: parent.top
-            anchors.right: parent.right;
+        Row {
+            height: parent.height
 
-            Text {
-                text: "MoeDict"
-                font.pixelSize: 32
-                font.weight: Font.Light
-                color: "white"
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left; anchors.leftMargin: 20
+            // Common API for Pages
+            property alias itemWidth: parent.width
+            function window() {
+                return appWindow
             }
         }
     }
