@@ -7,4 +7,6 @@ Item {
     height: parent.itemHeight
 
     AppViewHeader { id: header; text: "About MoeDict" }
+
+    // Data Source: https://github.com/g0v/moedict-data/blob/master/dict-revised.json?raw=true
 }
