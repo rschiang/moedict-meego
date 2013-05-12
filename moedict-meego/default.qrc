@@ -6,6 +6,7 @@
         <file>qml/HistoryPage.qml</file>
         <file>qml/AboutPage.qml</file>
         <file>qml/AppViewHeader.qml</file>
+        <file>qml/SearchField.qml</file>
     </qresource>
     <qresource prefix="/theme">
         <file alias="app-meegotouch-view-header-fixed-pressed">theme/app-meegotouch-view-header-fixed-pressed.png</file>

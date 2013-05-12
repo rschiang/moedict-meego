@@ -50,7 +50,8 @@ OTHER_FILES += \
     qml/DictPage.qml \
     qml/HistoryPage.qml \
     qml/AboutPage.qml \
-    qml/AppViewHeader.qml
+    qml/AppViewHeader.qml \
+    qml/SearchField.qml
 
 RESOURCES += \
     default.qrc
