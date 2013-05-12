@@ -6,13 +6,32 @@ Item {
     width: parent.itemWidth
     height: parent.itemHeight
 
-    AppViewHeader { text: "萌典" }
+    AppViewHeader { id: header; text: "萌典" }
 
-    ButtonColumn {
-        anchors.centerIn: parent
+    TextField {
+        id: searchField
+        anchors.top: header.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.margins: UiConstants.DefaultMargin
+        placeholderText: "搜尋教育部重編國語辭典"
+        platformSipAttributes: SipAttributes {
+            actionKeyHighlighted: true
+            actionKeyIcon: "image://theme/icon-m-toolbar-search"
+        }
 
-        Button { text: "Lorem Ipsum" }
-        Button { text: "Donor Amet" }
-        Button { text: "Versi Sali" }
+        Image {
+            id: searchIcon
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
+            source: (searchField.text.length > 0) ? "image://theme/icon-m-input-clear" : "image://theme/icon-m-common-search"
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    searchField.text = ""
+                }
+            }
+        }
     }
 }
