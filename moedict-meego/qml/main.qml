@@ -48,6 +48,7 @@ BaseWindow {
 
         ToolIcon {
             platformIconId: "toolbar-previous"
+            anchors.verticalCenter: parent.verticalCenter
             onClicked: {
                 Qt.quit() // To-do: Navigate backstack
             }
@@ -66,6 +67,15 @@ BaseWindow {
             TabButton {
                 id: aboutTab
                 iconSource: "image://theme/icon-m-toolbar-update"
+            }
+        }
+
+        ToolIcon {
+            platformIconId: "toolbar-next"
+            anchors.verticalCenter: parent.verticalCenter
+            visible: !inPortrait
+            onClicked: {
+                // To-do: Navigate next
             }
         }
     }
