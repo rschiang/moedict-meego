@@ -24,6 +24,9 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        contentWidth: historyList.width
+        contentHeight: historyList.height
+        clip: true
 
         Column {
             id: historyList
