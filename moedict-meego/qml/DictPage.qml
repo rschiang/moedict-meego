@@ -34,32 +34,11 @@ Item {
             width: parent.width
             spacing: UiConstants.DefaultMargin / 2
 
-            Row {
-                spacing: UiConstants.SubtitleFont.pixelSize / 2
-
-                Label {
-                    id: topicName
-                    font.family: UiConstants.TitleFont.family
-                    font.bold: Font.Bold
-                    font.pixelSize: 42
-                    text: "萌"
-                }
-
-                Label {
-                    id: topicZhuyin
-                    anchors.baseline: topicName.baseline
-                    font: UiConstants.SubtitleFont
-                    color: "#666"
-                    text: "ㄇㄥˊ"
-                }
-
-                Label {
-                    id: topicPinyin
-                    anchors.baseline: topicName.baseline
-                    font: UiConstants.SubtitleFont
-                    color: "#666"
-                    text: "méng"
-                }
+            DictTopicHeader {
+                text: "萌"
+                category: "艸"
+                strokeText: "+8=12"
+                phonetics: ["ㄇㄥˊ", "méng"]
             }
 
             SectionBubble { text: "名" }

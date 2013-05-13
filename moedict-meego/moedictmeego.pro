@@ -53,7 +53,8 @@ OTHER_FILES += \
     qml/AppViewHeader.qml \
     qml/SearchField.qml \
     qml/SectionBubble.qml \
-    qml/SectionHeader.qml
+    qml/SectionHeader.qml \
+    qml/DictTopicHeader.qml
 
 RESOURCES += \
     default.qrc
