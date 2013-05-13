@@ -7,6 +7,7 @@ Image {
     anchors.left: parent.left; anchors.top: parent.top
     anchors.right: parent.right;
     height: appWindow.inPortrait ?  UiConstants.HeaderDefaultHeightPortrait : UiConstants.HeaderDefaultHeightLandcape
+    z: 100
 
     // Properties
     property alias paddingItem: __paddingItem
