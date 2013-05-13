@@ -8,18 +8,19 @@ Item {
     implicitHeight: label.implicitHeight
     property alias text: label.text
 
-    Label {
-        id: label
-        font: UiConstants.GroupHeaderFont
-    }
-
     BorderImage {
         id: seperator
         source: "image://theme/meegotouch-groupheader-background"
         height: 2
-        anchors.left: label.right
-        anchors.right: parent.right
-        anchors.leftMargin: UiConstants.DefaultMargin / 2
+        anchors.left: parent.left
+        anchors.right: label.left
+        anchors.rightMargin: UiConstants.DefaultMargin / 2
         anchors.verticalCenter: label.verticalCenter
+    }
+
+    Label {
+        id: label
+        anchors.right: parent.right
+        font: UiConstants.GroupHeaderFont
     }
 }
