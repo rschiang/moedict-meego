@@ -3,9 +3,10 @@ Encoding=UTF-8
 Version=1.0
 Type=Application
 Terminal=false
-Name=moedict-meego
+Name=MoeDict
+Name[zh]=萌典
 Exec=/usr/bin/invoker --type=d -s /opt/moedict-meego/bin/moedict-meego
-Icon=/usr/share/icons/hicolor/80x80/apps/moedict-meego80.png
+Icon=/usr/share/icons/hicolor/80x80/apps/moedictmeego80.png
 X-Window-Icon=
 X-HildonDesk-ShowInToolbar=true
 X-Osso-Type=application/x-executable

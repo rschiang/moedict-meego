@@ -65,6 +65,6 @@ AutoGenerateAegisFile
 
 	</request>
 
-	<for path="/opt/moedictmeego/bin/moedictmeego" />
+        <for path="/opt/moedictmeego/bin/moedict-meego" />
 	<for path="applauncherd-launcher::/usr/bin/applauncherd.bin" id="" />
 </aegis>

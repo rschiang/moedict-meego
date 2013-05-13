@@ -1,4 +1,9 @@
-moedictmeego (0.0.1) unstable; urgency=low
+moedict-meego (13.5.14) unstable; urgency=low
+  * <Add change description here>
+
+ -- Poren Chiang <rschiang@unknown>  Tue, 14 May 2013 02:43:57 +0800
+
+moedict-meego (0.0.1) unstable; urgency=low
 
   * Initial Release.
 
