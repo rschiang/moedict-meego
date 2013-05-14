@@ -6,7 +6,7 @@ A MeeGo Harmattan client port for [g0v.tw](http://dev.g0v.tw) moedict project.
 
 ### Current status
 
-* --Basic UI--
+* <s>Basic UI</s> - done
 * Intergate dictionary API
 * Progressive search and minor features
 * Auto-update functionality
