@@ -6,7 +6,12 @@ Item {
     width: parent.itemWidth
     height: parent.itemHeight
 
-    AppViewHeader { id: header; text: "萌典" }
+    AppViewHeader {
+        id: header
+        text: "萌典"
+        interactive: true
+        onClicked: scrollToTop.start()
+    }
 
     Flickable {
         id: pageArea
@@ -77,4 +82,12 @@ Item {
     }
 
     ScrollDecorator { flickableItem: pageArea }
+
+    NumberAnimation {
+        id: scrollToTop
+        target: pageArea
+        property: "contentY"; to: 0
+        duration: 300
+        easing.type: Easing.OutCubic
+    }
 }
