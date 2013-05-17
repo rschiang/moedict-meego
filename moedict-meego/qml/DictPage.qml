@@ -1,10 +1,12 @@
 import QtQuick 1.1
-import com.nokia.meego 1.0
+import com.nokia.meego 1.1
+import com.nokia.extras 1.1
 
 Item {
     id: page
     width: parent.itemWidth
     height: parent.itemHeight
+    state: (searchField.text.length > 0) ? "search" : ""
 
     AppViewHeader {
         id: header
@@ -43,9 +45,20 @@ Item {
             }
 
             Column {
+                id: searchResults
+                width: parent.width
+                visible: (page.state == "search")
+
+                ListDelegate { property variant model: { title: "萌",  subtitle: "ㄇㄥˊ" } }
+                ListDelegate { property variant model: { title: "萌芽",  subtitle: "ㄇㄥˊ ㄧㄚˊ" } }
+                ListDelegate { property variant model: { title: "萌發",  subtitle: "ㄇㄥˊ ㄈㄚ" } }
+            }
+
+            Column {
                 id: definitionList
                 width: parent.width
                 spacing: UiConstants.DefaultMargin / 2
+                visible: (page.state == "")
 
                 DictTopicHeader {
                     text: "萌"
