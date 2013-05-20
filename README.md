@@ -9,6 +9,17 @@ A MeeGo Harmattan client port for [g0v.tw](http://dev.g0v.tw) moedict project.
 * **Python 2.7+** - for building index (tested under 2.7.4)
 * [Qt SDK](http://www.developer.nokia.com/Develop/Qt/Tools/) from Nokia - for N9 toolchain
 
+### Building index
+
+```
+rschiang@RSChiang:~/moedict-meego$ make index
+```
+During the first run, `make source` is invoked. The build system will automatically fetch required 
+repositories and generate mapped UTF-8 source file, which you can manually update by typing 
+`make update source`.
+
+The generated files are located at `data` folder.
+
 ### Current status
 
 * <s>Basic UI</s> - done
