@@ -1,13 +1,13 @@
 import json
 import os
+import codecs
 
-
-source = open("../moedict-data/dict-revised.json")
+source = codecs.open('dict-revised.unicode.json', encoding='utf-8', mode='r')
 sourceJson = json.load(source)
 
 index = []
 for entry in sourceJson:
-	index.append(entry.title)
+	index.append(entry['title'])
 
-target = open("../data/index.json", "w")
+target = codecs.open('../data/index.json', encoding='utf-8', mode='w+')
 json.dump(index, target)

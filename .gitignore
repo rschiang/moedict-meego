@@ -16,7 +16,14 @@
 *.pro.user.*
 moc_*.cpp
 qrc_*.cpp
-Makefile
 *-build-*
 simulator-*/
 qemu-*-*/
+
+# External repo dependencies
+moedict-data/
+moedict-epub/
+
+# Working files
+data/
+build/dict-revised.*.json
