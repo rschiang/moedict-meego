@@ -10,5 +10,5 @@ source :: moedict-data moedict-epub
 
 index :: source
 	ln -fs ../moedict-epub/dict-revised.unicode.json build/dict-revised.unicode.json
-	mkdir data
+	-mkdir data
 	cd build && python build-index.py
