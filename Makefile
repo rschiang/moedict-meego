@@ -1,8 +1,16 @@
 moedict-data ::
-	-git clone --depth 1 https://github.com/g0v/moedict-data.git
+	@if [ ! -d moedict-data ]; then \
+		-git clone --depth 1 https://github.com/g0v/moedict-data.git; \
+	fi
 
 moedict-epub ::
-	-git clone --depth 1 https://github.com/g0v/moedict-epub.git
+	@if [ ! -d moedict-epub ]; then \
+		-git clone --depth 1 https://github.com/g0v/moedict-epub.git; \
+	fi
+
+update :: moedict-data moedict-epub
+	cd moedict-data && git pull origin master && git checkout
+	cd moedict-epub && git pull origin master && git checkout
 
 source :: moedict-data moedict-epub
 	ln -fs ../moedict-data/dict-revised.json moedict-epub/dict-revised.json
