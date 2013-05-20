@@ -2,15 +2,14 @@ moedict-meego
 =============
 A MeeGo Harmattan client port for [g0v.tw](http://dev.g0v.tw) moedict project.
 
-![Screenshot of MoeDict MeeGo client on Nokia N9](docs/res/moedict-meego.png)
-
+Getting Started
+---------------
 ### Dependencies
 * **Perl 5.14+** - required by [moedict-epub](https://github.com/g0v/moedict-epub)
 * **Python 2.7+** - for building index (tested under 2.7.4)
 * [Qt SDK](http://www.developer.nokia.com/Develop/Qt/Tools/) from Nokia - for N9 toolchain
 
 ### Building index
-
 ```
 rschiang@RSChiang:~/moedict-meego$ make index
 ```
@@ -20,11 +19,17 @@ repositories and generate mapped UTF-8 source file, which you can manually updat
 
 The generated files are located at `data` folder.
 
-### Current status
-
-- [x] Basic UI
-- [ ] Intergate ~~dictionary API~~ offline index first
-- [ ] Progressive search and minor features
-- [ ] Auto-update functionality
+Getting Involved
+----------------
+### Milestones
+- ~~Basic UI~~ (done)
+- **Build and include offline index** (in progress)
+- Progressive search and minor features
+- Auto-update functionality
+- Integrate online API
 
 Join #g0v.tw discussion on Plurk or freenode IRC.
+
+Screenshots
+-----------
+![Screenshot of MoeDict MeeGo client on Nokia N9](docs/res/moedict-meego.png)
