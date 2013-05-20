@@ -22,9 +22,9 @@ The generated files are located at `data` folder.
 
 ### Current status
 
-* <s>Basic UI</s> - done
-* Intergate dictionary API
-* Progressive search and minor features
-* Auto-update functionality
+- [x] Basic UI
+- [ ] Intergate ~~dictionary API~~ offline index first
+- [ ] Progressive search and minor features
+- [ ] Auto-update functionality
 
 Join #g0v.tw discussion on Plurk or freenode IRC.
