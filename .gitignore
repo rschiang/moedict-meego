@@ -25,5 +25,4 @@ moedict-data/
 moedict-epub/
 
 # Working files
-data/
 build/dict-revised.*.json

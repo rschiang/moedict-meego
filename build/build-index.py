@@ -6,6 +6,7 @@ import re
 source = codecs.open('dict-revised.unicode.json', encoding='utf-8', mode='r')
 sourceJson = json.load(source)
 
+# TODO: Split main dictionary and indices into different files
 index = {"title": [], "zhuyin": {}, "pinyin": {}}
 ignore = [re.compile(x) for x in [r'\{\[[0-9a-f]{4}\]\}', u'\uDB40[\uDD00-\uDD0F]', r'[⿰⿸]']]
 
