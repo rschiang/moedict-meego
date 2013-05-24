@@ -1,3 +1,5 @@
+QT += network
+
 # Add more folders to ship with the application, here
 #folder_qml.source = qml/
 #folder_qml.target = qml

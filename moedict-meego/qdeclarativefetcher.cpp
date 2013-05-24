@@ -1,5 +1,7 @@
 #include "qdeclarativefetcher.h"
 
+QNetworkAccessManager* QDeclarativeFetcher::manager;
+
 QDeclarativeFetcher::QDeclarativeFetcher(QObject *parent) :
     QObject(parent)
 {
@@ -18,4 +20,14 @@ void QDeclarativeFetcher::setUrl(const QUrl &value)
 QString QDeclarativeFetcher::content() const
 {
     return m_content;
+}
+
+qreal QDeclarativeFetcher::progress() const
+{
+    return m_progress;
+}
+
+void QDeclarativeFetcher::setNetworkAccessManager(QNetworkAccessManager *manager)
+{
+    QDeclarativeFetcher::manager = manager;
 }
