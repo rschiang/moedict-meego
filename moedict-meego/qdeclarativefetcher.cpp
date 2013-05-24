@@ -56,11 +56,17 @@ void QDeclarativeFetcher::replyProgress(qint64 bytesReceived, qint64 bytesTotal)
 
 void QDeclarativeFetcher::replyFinished()
 {
-    // set content
-    finished();
+    m_progress = 1;
+    if (!m_reply->error()) {
+        QTextStream ts(m_reply);
+        ts.setCodec("UTF-8");
+        m_content = ts.readAll();
+        finished();
+    }
+    m_reply->deleteLater();
 }
 
 void QDeclarativeFetcher::replyError(QNetworkReply::NetworkError code)
 {
-    error();
+    error(code);
 }
