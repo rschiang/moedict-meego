@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QUrl>
-#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork>
 
 class QDeclarativeFetcher : public QObject
 {
@@ -29,6 +29,7 @@ private:
     QUrl m_url;
     QString m_content;
     qreal m_progress;
+    QNetworkReply *m_reply = 0;
 
     static QNetworkAccessManager* manager;
     
@@ -37,8 +38,10 @@ signals:
     void finished();
     void error();
     
-public slots:
-
+private slots:
+    void replyProgress(qint64 bytesReceived, qint64 bytesTotal);
+    void replyFinished();
+    void replyError(QNetworkReply::NetworkError code);
 };
 
 #endif // QDECLARATIVEFETCHER_H
