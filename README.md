@@ -17,15 +17,20 @@ During the first run, `make source` is invoked. The build system will automatica
 repositories and generate mapped UTF-8 source file, which you can manually update by typing 
 `make update source`.
 
-The generated files are located at `data` folder.
+The generated files are located at `data` folder, among with description files.
+- `manifest.json` declares information related to dictionary index version.
+- `index.json` is a compact JSON dict with Title - Raw Entry mapping.
+- `lookuptable.json` consists of extracted lookup information for use with incremental search.
 
 Getting Involved
 ----------------
 ### Milestones
 - ~~Basic UI~~ (done)
-- **Build and include offline index** (in progress)
+- ~~Build and include offline index~~ (done)
+- **Update functionality** (in progress)
+  Client itself doesn't include dictionary files 
+  and thus require a download ("update") during OOBE.
 - Progressive search and minor features
-- Auto-update functionality
 - Integrate online API
 
 Join #g0v.tw discussion on Plurk or freenode IRC.
