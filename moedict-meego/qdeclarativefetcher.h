@@ -36,7 +36,7 @@ private:
 signals:
     void progressChanged();
     void finished();
-    void error(QNetworkReply::NetworkError code);
+    void error(int code);
     
 private slots:
     void replyProgress(qint64 bytesReceived, qint64 bytesTotal);

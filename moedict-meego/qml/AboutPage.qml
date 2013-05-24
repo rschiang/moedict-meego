@@ -1,5 +1,6 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
+import org.moedict 1.1
 
 Item {
     id: page
@@ -64,11 +65,37 @@ Item {
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "檢查更新"
+                onClicked: {
+                    updateProgress.visible = true
+                    updater.start()
+                }
+            }
+
+            ProgressBar {
+                id: updateProgress
+                width: parent.width * .9
+                anchors.horizontalCenter: parent.horizontalCenter
+                visible: false
+                value: updater.progress
             }
         }
     }
 
     ScrollDecorator {
         flickableItem: pageArea
+    }
+
+    Fetcher {
+        id: updater
+        url: "https://raw.github.com/rschiang/moedict-meego/master/data/manifest.json"
+        onFinished: {
+            manifest = JSON.parse(content)
+            updateText.text = "有新版本可以使用（%s）".replace("%s", manifest.version)
+            updateProgress.visible = false
+        }
+        onError: {
+            updateText.text = "檢查更新時愈到了錯誤（#%d）".replace("%d", code)
+            updateProgress.visible = false
+        }
     }
 }
