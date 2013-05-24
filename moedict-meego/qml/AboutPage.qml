@@ -89,8 +89,7 @@ Item {
         id: updater
         url: "https://raw.github.com/rschiang/moedict-meego/master/data/manifest.json"
         onFinished: {
-            console.log(content)
-            manifest = JSON.parse(content)
+            var manifest = JSON.parse(content)
             updateText.text = "有新版本可以使用（%s）".replace("%s", manifest.version)
             updateProgress.visible = false
         }
