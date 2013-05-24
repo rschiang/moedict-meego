@@ -12,18 +12,27 @@ lookupTable = {'zhuyin': {}, 'pinyin': {}}
 abbrTable = {
 	'title': 't',
 	'radical': 'r',
-	'stroke_count': 'sc',
-	'non_radical_stroke_count': 'nc',
+	'stroke_count': 'c',
+	'non_radical_stroke_count': 'n',
 	'heteronyms': 'h',
-	'bopomofo': 'z',
-	'bopomofo2': 'z2',	# 國語注音符號第二式
+	'bopomofo': 'b',
+	'bopomofo2': 'B',	# 國語注音符號第二式
 	'pinyin': 'p',
 	'definitions': 'd',
-	'def': 'd',
+	'def': 'f',
 	'quote': 'q',
 	'type': 't',
 	'example': 'e',
 	'link': 'l',
+	'synonyms': 's',
+	'antonyms': 'a',
+	'trs': 'T',
+	'alt': 'A',
+	'vernacular': 'V',
+	'combined': 'C',
+	'dialects': 'D',
+	'id': '_',
+	'audio_id': '=',
 }
 ignoreExpr = [re.compile(x) for x in [r'\{\[[0-9a-f]{4}\]\}', u'\uDB40[\uDD00-\uDD0F]', u'[⿰⿸⿹⿻]']]
 
