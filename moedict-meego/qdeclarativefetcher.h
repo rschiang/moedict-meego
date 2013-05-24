@@ -29,7 +29,7 @@ private:
     QUrl m_url;
     QString m_content;
     qreal m_progress;
-    QNetworkReply *m_reply = 0;
+    QNetworkReply *m_reply;
 
     static QNetworkAccessManager* manager;
     

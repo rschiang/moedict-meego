@@ -11,6 +11,7 @@ void QDeclarativeFetcher::setNetworkAccessManager(QNetworkAccessManager *manager
 QDeclarativeFetcher::QDeclarativeFetcher(QObject *parent) :
     QObject(parent)
 {
+    m_reply = 0;
 }
 
 QUrl QDeclarativeFetcher::url() const
