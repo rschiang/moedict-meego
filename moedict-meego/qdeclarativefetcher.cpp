@@ -2,6 +2,11 @@
 
 QNetworkAccessManager* QDeclarativeFetcher::manager;
 
+void QDeclarativeFetcher::setNetworkAccessManager(QNetworkAccessManager *manager)
+{
+    QDeclarativeFetcher::manager = manager;
+}
+
 QDeclarativeFetcher::QDeclarativeFetcher(QObject *parent) :
     QObject(parent)
 {
@@ -27,7 +32,12 @@ qreal QDeclarativeFetcher::progress() const
     return m_progress;
 }
 
-void QDeclarativeFetcher::setNetworkAccessManager(QNetworkAccessManager *manager)
+void QDeclarativeFetcher::start()
 {
-    QDeclarativeFetcher::manager = manager;
+
+}
+
+void QDeclarativeFetcher::cancel()
+{
+
 }

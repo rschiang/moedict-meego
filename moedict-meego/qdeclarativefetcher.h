@@ -18,8 +18,10 @@ public:
     void setUrl(const QUrl &value);
 
     QString content() const;
-
     qreal progress() const;
+
+    Q_INVOKABLE void start();
+    Q_INVOKABLE void cancel();
 
     static void setNetworkAccessManager(QNetworkAccessManager *manager);
 
