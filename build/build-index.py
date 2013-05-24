@@ -3,37 +3,16 @@ import json
 import codecs
 import re
 
-source = codecs.open('dict-revised.unicode.json', encoding='utf-8', mode='r')
-sourceJson = json.load(source)
+def loadJson(path):
+	stream = codecs.open(path, encoding='utf-8', mode='r')
+	return json.load(stream)
+
+source = loadJson('dict-revised.unicode.json')
 
 # TODO: Split main dictionary and indices into different files
 index = {}
 lookupTable = {'zhuyin': {}, 'pinyin': {}}
-abbrTable = {
-	'title': 't',
-	'radical': 'r',
-	'stroke_count': 'c',
-	'non_radical_stroke_count': 'n',
-	'heteronyms': 'h',
-	'bopomofo': 'b',
-	'bopomofo2': 'B',	# 國語注音符號第二式
-	'pinyin': 'p',
-	'definitions': 'd',
-	'def': 'f',
-	'quote': 'q',
-	'type': 't',
-	'example': 'e',
-	'link': 'l',
-	'synonyms': 's',
-	'antonyms': 'a',
-	'trs': 'T',
-	'alt': 'A',
-	'vernacular': 'V',
-	'combined': 'C',
-	'dialects': 'D',
-	'id': '_',
-	'audio_id': '=',
-}
+abbrTable = loadJson('abbreviation.json')
 ignoreExpr = [re.compile(x) for x in [r'\{\[[0-9a-f]{4}\]\}', u'\uDB40[\uDD00-\uDD0F]', u'[⿰⿸⿹⿻]']]
 
 def ignoreEntry(title):
@@ -47,7 +26,7 @@ def addEntry(source, category, value):
 		lookupTable[category][source] = []
 	lookupTable[category][source].append(value)
 	
-for entry in sourceJson:
+for entry in source:
 	title = entry['title']
 	if ignoreEntry(title): continue
 
