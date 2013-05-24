@@ -1,9 +1,12 @@
 #include <QtGui/QApplication>
+#include <qdeclarative.h>
 #include "qmlapplicationviewer.h"
+#include "qdeclarativefetcher.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
     QScopedPointer<QApplication> app(createApplication(argc, argv));
+    qmlRegisterType<QDeclarativeFetcher>("org.moedict", 1, 1, "Fetcher");
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
