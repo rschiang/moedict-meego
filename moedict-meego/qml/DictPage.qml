@@ -49,9 +49,9 @@ Item {
                 width: parent.width
                 visible: (page.state == "search")
 
-                ListDelegate { property variant model: { title: "萌",  subtitle: "ㄇㄥˊ" } }
-                ListDelegate { property variant model: { title: "萌芽",  subtitle: "ㄇㄥˊ ㄧㄚˊ" } }
-                ListDelegate { property variant model: { title: "萌發",  subtitle: "ㄇㄥˊ ㄈㄚ" } }
+                ListDelegate { property variant model: { "title": "萌",  "subtitle": "ㄇㄥˊ" } }
+                ListDelegate { property variant model: { "title": "萌芽",  "subtitle": "ㄇㄥˊ ㄧㄚˊ" } }
+                ListDelegate { property variant model: { "title": "萌發",  "subtitle": "ㄇㄥˊ ㄈㄚ" } }
             }
 
             Column {
