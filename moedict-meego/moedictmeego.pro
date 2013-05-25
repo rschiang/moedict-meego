@@ -57,7 +57,8 @@ OTHER_FILES += \
     qml/SearchField.qml \
     qml/SectionBubble.qml \
     qml/SectionHeader.qml \
-    qml/DictTopicHeader.qml
+    qml/DictTopicHeader.qml \
+    qml/Updater.qml
 
 RESOURCES += \
     default.qrc

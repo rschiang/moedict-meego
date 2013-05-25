@@ -1,6 +1,5 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import org.moedict 1.1
 
 Item {
     id: page
@@ -43,40 +42,9 @@ Item {
 
             SectionHeader { text: "詞彙更新" }
 
-            Item {
+            Updater {
+                id: updater
                 width: parent.width
-                height: updateText.height
-                Image {
-                    id: updateIcon
-                    anchors.left: parent.left
-                    anchors.verticalCenter: parent.verticalCenter
-                    source: "image://theme/icon-s-status-system-update"
-                }
-                Label {
-                    id: updateText
-                    anchors.left: updateIcon.right
-                    anchors.right: parent.right
-                    anchors.leftMargin: UiConstants.DefaultMargin / 2
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    text: "MoeDict 目前已是最新版本 (13.0429)"
-                }
-            }
-
-            Button {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: "檢查更新"
-                onClicked: {
-                    updateProgress.visible = true
-                    updater.start()
-                }
-            }
-
-            ProgressBar {
-                id: updateProgress
-                width: parent.width * .9
-                anchors.horizontalCenter: parent.horizontalCenter
-                visible: false
-                value: updater.progress
             }
         }
     }
@@ -85,17 +53,4 @@ Item {
         flickableItem: pageArea
     }
 
-    Fetcher {
-        id: updater
-        url: "https://raw.github.com/rschiang/moedict-meego/master/data/manifest.json"
-        onFinished: {
-            var manifest = JSON.parse(content)
-            updateText.text = "有新版本可以使用（%s）".replace("%s", manifest.version)
-            updateProgress.visible = false
-        }
-        onError: {
-            updateText.text = "檢查更新時愈到了錯誤（#%d）".replace("%d", code)
-            updateProgress.visible = false
-        }
-    }
 }
