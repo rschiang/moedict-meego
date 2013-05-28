@@ -4,9 +4,7 @@ import com.nokia.meego 1.0
 BaseWindow {
     id: appWindow
 
-    Component.onCompleted: {
-        if (theme.color != undefined) theme.color = "14"
-    }
+    property variant database: DataHolder {}
 
     contentItem: Flickable {
         id: contentArea

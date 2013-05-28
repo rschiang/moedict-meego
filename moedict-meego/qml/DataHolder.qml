@@ -20,7 +20,7 @@ QtObject {
     Component.onCompleted: {
         execAction([
                        "CREATE TABLE IF NOT EXISTS entries(title TEXT UNIQUE, json TEXT)",
-                       "CREATE TABLE IF NOT EXISTS index(indexer TEXT, title TEXT)"
+                       "CREATE TABLE IF NOT EXISTS indices(key TEXT, title TEXT)"
                    ])
     }
 }
