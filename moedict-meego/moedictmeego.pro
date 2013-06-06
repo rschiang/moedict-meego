@@ -58,9 +58,10 @@ OTHER_FILES += \
     qml/SectionBubble.qml \
     qml/SectionHeader.qml \
     qml/DictTopicHeader.qml \
-    qml/Updater.qml \
     qml/DataHolder.qml \
-    qml/AppSettings.qml
+    qml/AppSettings.qml \
+    qml/AppUpdater.qml \
+    qml/UpdaterView.qml
 
 RESOURCES += \
     default.qrc

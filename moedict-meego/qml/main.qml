@@ -6,6 +6,7 @@ BaseWindow {
 
     property variant database: DataHolder {}
     property variant settings: AppSettings {}
+    property variant updater:  AppUpdater {}
 
     Component.onCompleted: {
         database.load()

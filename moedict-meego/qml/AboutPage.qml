@@ -42,7 +42,7 @@ Item {
 
             SectionHeader { text: "詞彙更新" }
 
-            Updater {
+            UpdaterView {
                 id: updater
                 width: parent.width
             }

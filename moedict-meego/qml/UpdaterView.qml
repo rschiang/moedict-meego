@@ -17,13 +17,15 @@ Column {
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
             width: 32; height: 32; smooth: true
+            visible: root.state != ""
             source: {
                 switch (root.state) {
                     case "available":   return "image://theme/icon-m-content-third-party-update"
                     case "updating":    return "image://theme/icon-s-transfer-download"
                     case "error":       return "image://theme/icon-s-transfer-error"
                     case "newest":      return "image://theme/icon-m-common-done"
-                    default:            return "image://theme/icon-s-transfer-sync"
+                    case "checking":    return "image://theme/icon-s-transfer-sync"
+                    default:            return ""
                 }
             }
         }
@@ -34,14 +36,14 @@ Column {
             anchors.right: parent.right
             anchors.leftMargin: UiConstants.DefaultMargin / 2
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            property string tag: "13.0429"
             text: {
                 switch (root.state) {
-                    case "available":   return "有可用的更新（%s）".replace("%s", tag)
+                    case "available":   return "有可用的更新（%s）".replace("%s", appWindow.updater.data.version)
                     case "updating":    return "正在更新辭典……"
-                    case "error":       return "更新時遇到錯誤（#%s）".replace("%s", tag)
-                    case "newest":      return "MoeDict 已是最新版本（%s）".replace("%s", tag)
-                    default:            return "檢查更新……"
+                    case "error":       return "更新時遇到錯誤（#%s）".replace("%s", appWindow.updater.data)
+                    case "newest":      return "MoeDict 已是最新版本（%s）".replace("%s", appWindow.updater.data.version)
+                    case "checking":    return "檢查更新……"
+                    default:            return "MoeDict 版本 13.0429"
                 }
             }
         }
@@ -51,7 +53,7 @@ Column {
         id: progressBar
         anchors.left: parent.left
         anchors.right: parent.right
-        visible: root.state == "" || root.state == "updating"
+        visible: root.state == "checking" || root.state == "updating"
         indeterminate: (value <= 0)
     }
 
@@ -59,31 +61,36 @@ Column {
         id: actionButton
         anchors.horizontalCenter: parent.horizontalCenter
         visible: root.state != "newest"
-        text: (root.state == "available" ?  "安裝" :
-               root.state == "error" ?      "重試" : "取消")
-        onClicked: {
-            // TODO: Implement real mechanism
+        text: {
             switch (root.state) {
-                case "": root.state = "available"; break
-                case "available": root.state = "updating"; break
-                case "updating": root.state = "error"; break
-                case "error": root.state = "newest"; break
-                default: root.state = ""; break
+                case "":            return "檢查更新"
+                case "available":   return "安裝"
+                case "error":       return "重試"
+                default:            return "取消"
+            }
+        }
+        onClicked: {
+            switch (root.state) {
+                case "":
+                    appWindow.updater.refresh()
+                    break
+                case "checking":
+                case "updating":
+                    appWindow.updater.cancel()
+                    break
+                case "available":
+                    appWindow.updater.install()
+                    break
+                case "error":
+                    appWindow.updater.retry()
+                    break
             }
         }
     }
 
-    Fetcher {
-        id: manifestFetcher
-        url: "https://raw.github.com/rschiang/moedict-meego/master/data/manifest.json"
-        onFinished: {
-            var manifest = JSON.parse(content)
-            root.state = "available"
-            statusLabel.tag = manifest.version
-        }
-        onError: {
-            root.state = "error"
-            statusLabel.tag = code
-        }
+    Connections {
+        target: appWindow.updater
+        onStateChanged: root.state = appWindow.updater.state
+        onProgressChanged: progressBar.value = appWindow.updater.progress
     }
 }
