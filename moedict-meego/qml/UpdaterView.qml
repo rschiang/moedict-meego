@@ -25,7 +25,7 @@ Column {
                     case "error":       return "image://theme/icon-s-transfer-error"
                     case "newest":      return "image://theme/icon-m-common-done"
                     case "checking":    return "image://theme/icon-s-transfer-sync"
-                    default:            return ""
+                    default:            return "image://theme/icon-m-content-application"
                 }
             }
         }
@@ -43,7 +43,7 @@ Column {
                     case "error":       return "更新時遇到錯誤（#%s）".replace("%s", appWindow.updater.data)
                     case "newest":      return "MoeDict 已是最新版本（%s）".replace("%s", appWindow.updater.data.version)
                     case "checking":    return "檢查更新……"
-                    default:            return "MoeDict 版本 13.0429"
+                    default:            return "MoeDict 版本 %s".replace("%s", appWindow.settings.get("dict.version"))
                 }
             }
         }
