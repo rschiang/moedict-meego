@@ -6,6 +6,7 @@ Item {
     property string state: ""
     property real progress: 0.0
     property variant data
+    property string recoveryState: ""
 
     Fetcher {
         id: manifestFetcher
@@ -13,14 +14,18 @@ Item {
         onProgressChanged: root.progress = progress
         onFinished: {
             var manifest = JSON.parse(content)
-            root.state = "available"
+            var curVersion = appWindow.settings.get("dict.version")
+            if ((curVersion != undefined) && (curVersion >= manifest.version)) {
+                root.state = "newest"
+            } else {
+                root.state = "available"
+            }
             root.data = manifest
-            console.log(manifest.version)
         }
         onError: {
             root.state = "error"
             root.data = code
-            console.log(code)
+            root.recoveryState = "checking"
         }
     }
 
@@ -39,12 +44,22 @@ Item {
 
     function cancel()
     {
-        // TODO: Cancel current
+        if (root.state == "checking") {
+            manifestFetcher.cancel()
+            root.state = ""
+        } else {
+            // TODO: Updating
+        }
     }
 
     function retry()
     {
-        root.state = "checking"
-        manifestFetcher.start()
+        switch (root.recoveryState) {
+        case "checking":
+            root.state = "checking"
+            manifestFetcher.start()
+            break
+        // TODO: Updating
+        }
     }
 }
