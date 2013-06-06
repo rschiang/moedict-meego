@@ -49,11 +49,28 @@ Item {
         onProgressChanged: root.progress = 0.6 + progress * 0.1
         onFinished: {
             root.recoveryState = "parsing"
-            // TODO: Parser
+            parser.start()
         }
         onError: {
             root.state = "error"
             root.data = code
+        }
+    }
+
+    WorkerScript {
+        id: parser
+        source: "updater.js"
+        onMessage: {
+            if (msg.completed) {
+                root.state = "newest"
+                root.recoveryState = ""
+            } else {
+                root.progress = 0.7 + msg.progress * 0.3
+            }
+        }
+
+        function start() {
+            sendMessage({"dict": dictFetcher.content, "index": indexFetcher.content })
         }
     }
 
@@ -84,9 +101,8 @@ Item {
             case "updating-2":
                 indexFetcher.cancel()
                 break
-            case "parsing":
-                // TODO: Parser
-                break
+            //case "parsing": // Cannot cancel WorkerScript
+            //    break
             }
             root.state = "available"
             root.recoveryState = ""
@@ -110,7 +126,7 @@ Item {
             break
         case "parsing":
             root.state = "updating"
-            // TODO: Parser
+            parser.start()
             break
         }
     }

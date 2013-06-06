@@ -19,6 +19,7 @@ qrc_*.cpp
 *-build-*
 simulator-*/
 qemu-*-*/
+*.autosave
 
 # External repo dependencies
 moedict-data/

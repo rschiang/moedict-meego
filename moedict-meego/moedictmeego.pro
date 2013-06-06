@@ -61,7 +61,8 @@ OTHER_FILES += \
     qml/DataHolder.qml \
     qml/AppSettings.qml \
     qml/AppUpdater.qml \
-    qml/UpdaterView.qml
+    qml/UpdaterView.qml \
+    qml/updater.js
 
 RESOURCES += \
     default.qrc
