@@ -92,5 +92,6 @@ Column {
         target: appWindow.updater
         onStateChanged: root.state = appWindow.updater.state
         onProgressChanged: progressBar.value = appWindow.updater.progress
+        onRecoveryStateChanged: actionButton.enabled = appWindow.updater.recoveryState != "parsing"
     }
 }
