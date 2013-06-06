@@ -5,6 +5,12 @@ BaseWindow {
     id: appWindow
 
     property variant database: DataHolder {}
+    property variant settings: AppSettings {}
+
+    Component.onCompleted: {
+        database.load()
+        settings.load()
+    }
 
     contentItem: Flickable {
         id: contentArea

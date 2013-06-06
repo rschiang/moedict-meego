@@ -12,6 +12,7 @@
         <file>qml/DictTopicHeader.qml</file>
         <file>qml/Updater.qml</file>
         <file>qml/DataHolder.qml</file>
+        <file>qml/AppSettings.qml</file>
     </qresource>
     <qresource prefix="/theme">
         <file alias="app-meegotouch-view-header-fixed-pressed">theme/app-meegotouch-view-header-fixed-pressed.png</file>
