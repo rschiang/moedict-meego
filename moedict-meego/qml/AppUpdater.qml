@@ -21,25 +21,54 @@ Item {
                 root.state = "available"
             }
             root.data = manifest
+            root.recoveryState = ""
         }
         onError: {
             root.state = "error"
             root.data = code
-            root.recoveryState = "checking"
+        }
+    }
+
+    Fetcher {
+        id: dictFetcher
+        url: "https://raw.github.com/rschiang/moedict-meego/master/data/index.json"
+        onProgressChanged: root.progress = progress * 0.6
+        onFinished: {
+            root.recoveryState = "updating-2"
+            indexFetcher.start()
+        }
+        onError: {
+            root.state = "error"
+            root.data = code
+        }
+    }
+
+    Fetcher {
+        id: indexFetcher
+        url: "https://raw.github.com/rschiang/moedict-meego/master/data/lookuptable.json"
+        onProgressChanged: root.progress = 0.6 + progress * 0.1
+        onFinished: {
+            root.recoveryState = "parsing"
+            // TODO: Parser
+        }
+        onError: {
+            root.state = "error"
+            root.data = code
         }
     }
 
     function refresh()
     {
         root.state = "checking"
+        root.recoveryState = "checking"
         manifestFetcher.start()
     }
 
     function install()
     {
-        //root.state = "updating"
-        // TODO: Update
-        root.state = ""
+        root.state = "updating"
+        root.recoveryState = "updating-1"
+        dictFetcher.start()
     }
 
     function cancel()
@@ -48,7 +77,19 @@ Item {
             manifestFetcher.cancel()
             root.state = ""
         } else {
-            // TODO: Updating
+            switch (root.recoveryState) {
+            case "updating-1":
+                dictFetcher.cancel()
+                break
+            case "updating-2":
+                indexFetcher.cancel()
+                break
+            case "parsing":
+                // TODO: Parser
+                break
+            }
+            root.state = "available"
+            root.recoveryState = ""
         }
     }
 
@@ -59,7 +100,18 @@ Item {
             root.state = "checking"
             manifestFetcher.start()
             break
-        // TODO: Updating
+        case "updating-1":
+            root.state = "updating"
+            dictFetcher.start()
+            break
+        case "updating-2":
+            root.state = "updating"
+            indexFetcher.start()
+            break
+        case "parsing":
+            root.state = "updating"
+            // TODO: Parser
+            break
         }
     }
 }
