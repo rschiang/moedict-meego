@@ -43,7 +43,7 @@ QtObject {
                        "CREATE TABLE IF NOT EXISTS entries(title TEXT UNIQUE, json TEXT)",
                        "CREATE TABLE IF NOT EXISTS indices(key TEXT, title TEXT)",
                        "CREATE TABLE IF NOT EXISTS settings(key TEXT UNIQUE, value TEXT)",
-                       "CREATE TABLE IF NOT EXISTS history(title TEXT, subtitle TEXT, date TEXT)"
+                       "CREATE TABLE IF NOT EXISTS history(title TEXT, date TEXT)"
                    ])
     }
 }

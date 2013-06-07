@@ -4,36 +4,28 @@ import com.nokia.meego 1.0
 BaseWindow {
     id: appWindow
 
-    property variant database: DataHolder {}
+    property variant database: AppDatabase {}
     property variant settings: AppSettings {}
     property variant updater:  AppUpdater {}
+    property variant history: AppHistory {}
     property bool dictionaryEnabled: true
-    property int currentIndex: 0
-    property int backStackIndex: 0
 
     Component.onCompleted: {
         database.load()
         settings.load()
+        history.load()
         updater.version = appWindow.settings.getDefault("dict.version", 0)
         if (updater.version <= 0) {
             aboutTab.checked = true
             dictionaryEnabled = false
-            historyPage.init()
-            historyPage.load()
         } else {
-            historyPage.load()
-            var last = historyPage.getHistory(0)
-            navigate((last != undefined) ? last : "萌")
+            var last = history.get(0)
+            if (last != undefined) __showEntry(last)
+            else __showEntry("成長")
         }
     }
 
-    function navigate(entry) { dictPage.showEntry(entry) }
-    function pushToHistory(entry) {
-        historyPage.pushHistory(entry)
-        historyPage.saveHistory(entry.title, entry.subtitle)
-        currentIndex++
-        backStackIndex++
-    }
+    function __showEntry(title) { dictPage.showEntry(title) }
 
     contentItem: Flickable {
         id: contentArea
@@ -77,11 +69,8 @@ BaseWindow {
             platformIconId: "toolbar-previous"
             anchors.verticalCenter: parent.verticalCenter
             onClicked: {
-                if (currentIndex >= backStackIndex) {
-                    Qt.quit()
-                } else {
-                    navigate(historyPage.getHistory(++currentIndex))
-                }
+                if (history.canGoBack) history.back()
+                else Qt.quit()
             }
         }
 
@@ -107,10 +96,8 @@ BaseWindow {
             platformIconId: "toolbar-next"
             anchors.verticalCenter: parent.verticalCenter
             visible: !inPortrait
-            enabled: (currentIndex > 0)
-            onClicked: {
-                navigate(historyPage.getHistory(--currentIndex))
-            }
+            enabled: history.canGoForward
+            onClicked: history.forward()
         }
     }
 
