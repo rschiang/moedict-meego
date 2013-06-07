@@ -42,6 +42,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 placeholderText: "搜尋注音、拼音或國字"
+                inputMethodHints: Qt.ImhPreferLowercase
                 onTextChanged: doSearch()
             }
 
@@ -55,7 +56,8 @@ Item {
                     delegate: Component {
                         ListItem {
                             title: modelData.title
-                            subtitle: modelData.key ? modelData.key : ""
+                            subtitle: (modelData.key !== undefined) ? modelData.key : ""
+                            onClicked: showEntry(title)
                         }
                     }
                 }
@@ -122,9 +124,13 @@ Item {
 
         var sql = (useindex) ? "SELECT key, title FROM indices WHERE key LIKE ? LIMIT 10"
                              : "SELECT title FROM entries WHERE title LIKE ? LIMIT 10"
-        var result = appWindow.database.execRow(sql, [query])
+        var result = appWindow.database.execRow(sql, [(query+'%')])
         searchView.model = result
-        console.log("Result " + JSON.stringify(result))
-        console.log("Len " + result.length)
+    }
+
+    function showEntry(title)
+    {
+        searchField.text = ""
+        searchField.platformCloseSoftwareInputPanel()
     }
 }
