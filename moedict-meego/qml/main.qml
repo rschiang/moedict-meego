@@ -8,7 +8,8 @@ BaseWindow {
     property variant settings: AppSettings {}
     property variant updater:  AppUpdater {}
     property bool dictionaryEnabled: true
-    property variant backStack: []
+    property int currentIndex: 0
+    property int backStackIndex: 0
 
     Component.onCompleted: {
         database.load()
@@ -21,14 +22,17 @@ BaseWindow {
             historyPage.load()
         } else {
             historyPage.load()
-            navigate(historyPage.getLastHistory())
+            var last = historyPage.getHistory(0)
+            navigate((last != undefined) ? last : "萌")
         }
     }
 
     function navigate(entry) { dictPage.showEntry(entry) }
     function pushToHistory(entry) {
-        backStack = backStack.concat([entry])
-        historyPage.writeToHistory(entry.title, entry.subtitle)
+        historyPage.pushHistory(entry)
+        historyPage.saveHistory(entry.title, entry.subtitle)
+        currentIndex++
+        backStackIndex++
     }
 
     contentItem: Flickable {
@@ -73,12 +77,10 @@ BaseWindow {
             platformIconId: "toolbar-previous"
             anchors.verticalCenter: parent.verticalCenter
             onClicked: {
-                if (backStack.length > 0) {
-                    var stack = backStack
-                    navigate(stack.pop())
-                    backStack = stack
-                } else {
+                if (currentIndex >= backStackIndex) {
                     Qt.quit()
+                } else {
+                    navigate(historyPage.getHistory(++currentIndex))
                 }
             }
         }
@@ -105,8 +107,9 @@ BaseWindow {
             platformIconId: "toolbar-next"
             anchors.verticalCenter: parent.verticalCenter
             visible: !inPortrait
+            enabled: (currentIndex > 0)
             onClicked: {
-                // To-do: Navigate next
+                navigate(historyPage.getHistory(--currentIndex))
             }
         }
     }

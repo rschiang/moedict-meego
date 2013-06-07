@@ -65,7 +65,7 @@ Item {
                         ListItem {
                             title: modelData.title
                             subtitle: (modelData.key != undefined) ? modelData.key : ""
-                            onClicked: showEntry(title)
+                            onClicked: navigateEntry(title)
                         }
                     }
                 }
@@ -128,6 +128,12 @@ Item {
         searchView.model = result
     }
 
+    function navigateEntry(title) {
+        subtitle = showEntry(title)
+        appWindow.pushToHistory({ "title": title, "subtitle": subtitle })
+        appWindow.currentIndex = 0
+    }
+
     function showEntry(title)
     {
         searchField.text = ""
@@ -170,5 +176,7 @@ Item {
                 labelFactory.createObject(definitionList, { text: "<ol>" + defs[type] + "</ol>" })
             }
         }
+
+        return data.h[0].b
     }
 }
