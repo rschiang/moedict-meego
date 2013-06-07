@@ -138,7 +138,6 @@ Item {
         var entry = appWindow.database.execRow("SELECT json FROM entries WHERE title = ?", [title])
         if (entry === undefined) return
 
-        console.log(entry.json)
         var data = JSON.parse(entry.json.replace(/'/g, '"'))
         var stroke = "+%n=%c".replace("%n", data.n).replace("%c", data.c)
 

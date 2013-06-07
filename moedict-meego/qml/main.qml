@@ -17,8 +17,8 @@ BaseWindow {
             aboutTab.checked = true
             dictionaryEnabled = false
         } else {
-            dictPage.showEntry("萌")
         }
+        historyPage.init()
     }
 
     contentItem: Flickable {
