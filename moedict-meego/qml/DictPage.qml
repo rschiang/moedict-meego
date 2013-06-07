@@ -42,6 +42,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 placeholderText: "搜尋注音、拼音或國字"
+                onTextChanged: doSearch()
             }
 
             Column {
@@ -49,9 +50,15 @@ Item {
                 width: parent.width
                 visible: (page.state == "search")
 
-                ListItem { title: "萌";  subtitle: "ㄇㄥˊ" }
-                ListItem { title: "萌芽";  subtitle: "ㄇㄥˊ ㄧㄚˊ" }
-                ListItem { title: "萌發";  subtitle: "ㄇㄥˊ ㄈㄚ" }
+                Repeater {
+                    id: searchView
+                    delegate: Component {
+                        ListItem {
+                            title: modelData.title
+                            subtitle: modelData.key ? modelData.key : ""
+                        }
+                    }
+                }
             }
 
             Column {
@@ -102,5 +109,22 @@ Item {
         property: "contentY"; to: 0
         duration: 300
         easing.type: Easing.OutCubic
+    }
+
+    function doSearch()
+    {
+        var query = searchField.text
+        if (query.length <= 0) return
+
+        // Use first character to determine type
+        var chr = query.charCodeAt(0)
+        var useindex = (chr <= 0xff) || ((chr >= 0x3100) && (chr <= 0x312f))
+
+        var sql = (useindex) ? "SELECT key, title FROM indices WHERE key LIKE ? LIMIT 10"
+                             : "SELECT title FROM entries WHERE title LIKE ? LIMIT 10"
+        var result = appWindow.database.execRow(sql, [query])
+        searchView.model = result
+        console.log("Result " + JSON.stringify(result))
+        console.log("Len " + result.length)
     }
 }
