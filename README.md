@@ -30,8 +30,16 @@ Getting Involved
 - ~~Update functionality~~ (done)
   Client itself doesn't include dictionary files 
   and thus require a download ("update") during OOBE.
-- **Progressive search** (in progress) and minor features
+- ~~Progressive search~~ (done) - v13.6.7
 - Integrate online API
+
+### To-dos
+You can freely pick up and send us a PR! :)
+- Improve search efficiency
+- Able to show pronouncation in History page
+- Incremental updater
+- Text-selection and "search on web"
+- "Share to" feature
 
 Join #g0v.tw discussion on Plurk or freenode IRC.
 
