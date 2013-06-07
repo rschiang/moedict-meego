@@ -27,10 +27,10 @@ Getting Involved
 ### Milestones
 - ~~Basic UI~~ (done)
 - ~~Build and include offline index~~ (done)
-- **Update functionality** (in progress)
+- ~~Update functionality~~ (done)
   Client itself doesn't include dictionary files 
   and thus require a download ("update") during OOBE.
-- Progressive search and minor features
+- **Progressive search** (in progress) and minor features
 - Integrate online API
 
 Join #g0v.tw discussion on Plurk or freenode IRC.
