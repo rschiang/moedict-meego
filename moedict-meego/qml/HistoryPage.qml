@@ -66,8 +66,6 @@ Item {
             writeToHistory("論語", "ㄌㄨㄣˊ ㄩˇ", new Date("2013-06-07T00:00:00Z"))
             writeToHistory("萌", "ㄇㄥˊ")
         }
-        load()
-        appWindow.dictPage.showEntry(result[0].title)
     }
 
     function load() {
@@ -77,6 +75,11 @@ Item {
             result[i].day = getDayName(new Date(result[i].date))
             historyModel.append(result[i])
         }
+    }
+
+    function getLastHistory() {
+        if (historyModel.count <= 0) return undefined
+        return historyModel[0].title
     }
 
     function writeToHistory(title, subtitle, date) {

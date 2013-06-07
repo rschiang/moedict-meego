@@ -68,12 +68,14 @@ QtObject {
                     appWindow.settings.set("dict.version", root.version)
                     root.state = "newest"
                     root.recoveryState = ""
+                    appWindow.dictionaryEnabled = true
                 } else {
                     root.progress = 0.7 + messageObject.progress * 0.3
                 }
             }
 
             function start() {
+                appWindow.dictionaryEnabled = false
                 sendMessage({"dict": dictFetcher.content, "index": indexFetcher.content })
             }
         }

@@ -8,6 +8,7 @@ BaseWindow {
     property variant settings: AppSettings {}
     property variant updater:  AppUpdater {}
     property bool dictionaryEnabled: true
+    property variant backStack: []
 
     Component.onCompleted: {
         database.load()
@@ -16,9 +17,18 @@ BaseWindow {
         if (updater.version <= 0) {
             aboutTab.checked = true
             dictionaryEnabled = false
+            historyPage.init()
+            historyPage.load()
         } else {
+            historyPage.load()
+            navigate(historyPage.getLastHistory())
         }
-        historyPage.init()
+    }
+
+    function navigate(entry) { dictPage.showEntry(entry) }
+    function pushToHistory(entry) {
+        backStack = backStack.concat([entry])
+        historyPage.writeToHistory(entry.title, entry.subtitle)
     }
 
     contentItem: Flickable {
@@ -63,7 +73,13 @@ BaseWindow {
             platformIconId: "toolbar-previous"
             anchors.verticalCenter: parent.verticalCenter
             onClicked: {
-                Qt.quit() // To-do: Navigate backstack
+                if (backStack.length > 0) {
+                    var stack = backStack
+                    navigate(stack.pop())
+                    backStack = stack
+                } else {
+                    Qt.quit()
+                }
             }
         }
 
