@@ -32,7 +32,7 @@ Item {
         delegate: Component {
             ListItem {
                 title: model.title
-                subtitle: model.subtitle
+                //subtitle
                 //onClicked:
             }
         }

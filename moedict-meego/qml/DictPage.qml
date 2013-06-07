@@ -64,8 +64,8 @@ Item {
                     delegate: Component {
                         ListItem {
                             title: modelData.title
-                            subtitle: (modelData.key != undefined) ? modelData.key : ""
-                            onClicked: navigateEntry(title)
+                            subtitle: (modelData.key) ? modelData.key : ""
+                            onClicked: appWindow.history.navigate(title)
                         }
                     }
                 }
@@ -128,12 +128,6 @@ Item {
         searchView.model = result
     }
 
-    function navigateEntry(title) {
-        var subtitle = showEntry(title)
-        appWindow.pushToHistory({ "title": title, "subtitle": subtitle })
-        appWindow.currentIndex = 0
-    }
-
     function showEntry(title)
     {
         searchField.text = ""
@@ -152,7 +146,7 @@ Item {
             var item = data.h[i]
             topicHeaderFactory.createObject(definitionList, {
                                                 text: data.t,
-                                                category: data.r,
+                                                category: (data.r) ? data.r : "",
                                                 strokeText: stroke,
                                                 phonetics: [item.b, item.p]
                                             })
@@ -160,7 +154,8 @@ Item {
             var defs = {}
             for (var j = 0; j < item.d.length; j++) {
                 var def = item.d[j]
-                if (!(def.t in defs)) defs[def.t] = ""
+                var t = (def.t) ? def.t : ""
+                if (!(t in defs)) defs[t] = ""
 
                 var sentences = [def.f]
                 if (def.e) sentences = sentences.concat(def.e)
@@ -168,11 +163,11 @@ Item {
                 if (def.l) sentences = sentences.concat(def.l)
                 var str = "<li>" + sentences.join("<br>") + "</li>"
 
-                defs[def.t] += str
+                defs[t] += str
             }
 
             for (var type in defs) {
-                sectionFactory.createObject(definitionList, { text: type })
+                if (type) sectionFactory.createObject(definitionList, { text: type })
                 labelFactory.createObject(definitionList, { text: "<ol>" + defs[type] + "</ol>" })
             }
         }

@@ -14,7 +14,6 @@ QtObject {
             var date = new Date(entry.date)
             model.append(__createModel(entry.title, date))
         }
-        console.log(Date.parse(new Date()))
     }
 
     function back() {
