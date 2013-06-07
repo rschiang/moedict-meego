@@ -30,12 +30,12 @@ function loadDict(message) {
                        for (var indexType in indexObj) {
                            var indexDict = indexObj[indexType]
                            for (var key in indexDict) {
-                               for (var title in indexDict[key])
-                                   tx.executeSql("REPLACE INTO indices(key,title) VALUES (?,?)", [key, title])
+                               for (var i in indexDict[key])
+                                   tx.executeSql("REPLACE INTO indices(key,title) VALUES (?,?)", [key, indexDict[key][i]])
 
-                               // Estimate size: 4096 * 67 = 274432 (v13.0429 has 277174)
+                               // Estimate size: 4096 * 68 = 278528 (v13.0429 has 277174)
                                if (((++count) & 4095) === 0)
-                                   WorkerScript.sendMessage({"progress": 0.5 + (count >> 12) / 67})
+                                   WorkerScript.sendMessage({"progress": 0.5 + (count >> 12) / 81})
                            }
                        }
                    })
