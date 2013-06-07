@@ -3,8 +3,13 @@ import com.nokia.meego 1.0
 
 TextField {
     id: searchField
-    platformSipAttributes: SipAttributes {
+    platformSipAttributes: sipAttributes
+
+    SipAttributes {
+        id: sipAttributes
+        actionKeyEnabled: true
         actionKeyHighlighted: true
+        actionKeyLabel: "搜尋"
         actionKeyIcon: "image://theme/icon-m-toolbar-search"
     }
 

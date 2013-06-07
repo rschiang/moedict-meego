@@ -44,6 +44,13 @@ Item {
                 placeholderText: "搜尋注音、拼音或國字"
                 inputMethodHints: Qt.ImhPreferLowercase
                 onTextChanged: doSearch()
+                Keys.onReturnPressed: {
+                    if (searchView.model.length > 0) {
+                        showEntry(searchView.model[0].title)
+                    } else {
+                        closeSoftwareInputPanel()
+                    }
+                }
             }
 
             Column {
@@ -132,5 +139,6 @@ Item {
     {
         searchField.text = ""
         searchField.platformCloseSoftwareInputPanel()
+        console.log(title)
     }
 }
