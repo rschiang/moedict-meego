@@ -14,6 +14,7 @@
         <file>qml/DataHolder.qml</file>
         <file>qml/AppSettings.qml</file>
         <file>qml/AppUpdater.qml</file>
+        <file>qml/updater.js</file>
     </qresource>
     <qresource prefix="/theme">
         <file alias="app-meegotouch-view-header-fixed-pressed">theme/app-meegotouch-view-header-fixed-pressed.png</file>

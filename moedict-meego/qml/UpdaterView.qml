@@ -38,12 +38,12 @@ Column {
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             text: {
                 switch (root.state) {
-                    case "available":   return "有可用的更新（%s）".replace("%s", appWindow.updater.data.version)
+                    case "available":   return "有可用的更新（%s）".replace("%s", appWindow.updater.version)
                     case "updating":    return "正在更新辭典……"
                     case "error":       return "更新時遇到錯誤（#%s）".replace("%s", appWindow.updater.data)
-                    case "newest":      return "MoeDict 已是最新版本（%s）".replace("%s", appWindow.updater.data.version)
+                    case "newest":      return "MoeDict 已是最新版本（%s）".replace("%s", appWindow.updater.version)
                     case "checking":    return "檢查更新……"
-                    default:            return "MoeDict 版本 %s".replace("%s", appWindow.settings.get("dict.version"))
+                    default:            return "MoeDict 版本 %s".replace("%s", appWindow.updater.version)
                 }
             }
         }

@@ -20,6 +20,10 @@ QtObject {
         return __entries[key]
     }
 
+    function getDefault(key, fallback) {
+        return (key in __entries) ? __entries[key] : fallback
+    }
+
     function set(key, value) {
         var db = appWindow.database.getDatabase()
         var entries = __entries

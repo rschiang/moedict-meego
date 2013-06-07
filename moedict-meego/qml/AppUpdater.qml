@@ -1,78 +1,81 @@
 import QtQuick 1.1
 import org.moedict 1.1
 
-Item {
+QtObject {
     id: root
     property string state: ""
     property real progress: 0.0
     property variant data
+    property real version
     property string recoveryState: ""
 
-    Fetcher {
-        id: manifestFetcher
-        url: "https://raw.github.com/rschiang/moedict-meego/master/data/manifest.json"
-        onProgressChanged: root.progress = progress
-        onFinished: {
-            var manifest = JSON.parse(content)
-            var curVersion = appWindow.settings.get("dict.version")
-            if ((curVersion != undefined) && (curVersion >= manifest.version)) {
-                root.state = "newest"
-            } else {
-                root.state = "available"
-            }
-            root.data = manifest
-            root.recoveryState = ""
-        }
-        onError: {
-            root.state = "error"
-            root.data = code
-        }
-    }
+    property list<QtObject> fetchers: [
+        Fetcher {
+            id: manifestFetcher
+            url: "https://raw.github.com/rschiang/moedict-meego/master/data/manifest.json"
+            onProgressChanged: { root.progress = progress }
+            onFinished: {
+                var manifest = JSON.parse(content)
+                var curVersion = appWindow.settings.get("dict.version")
 
-    Fetcher {
-        id: dictFetcher
-        url: "https://raw.github.com/rschiang/moedict-meego/master/data/index.json"
-        onProgressChanged: root.progress = progress * 0.6
-        onFinished: {
-            root.recoveryState = "updating-2"
-            indexFetcher.start()
-        }
-        onError: {
-            root.state = "error"
-            root.data = code
-        }
-    }
-
-    Fetcher {
-        id: indexFetcher
-        url: "https://raw.github.com/rschiang/moedict-meego/master/data/lookuptable.json"
-        onProgressChanged: root.progress = 0.6 + progress * 0.1
-        onFinished: {
-            root.recoveryState = "parsing"
-            parser.start()
-        }
-        onError: {
-            root.state = "error"
-            root.data = code
-        }
-    }
-
-    WorkerScript {
-        id: parser
-        source: "updater.js"
-        onMessage: {
-            if (msg.completed) {
-                root.state = "newest"
+                root.data = manifest
+                root.version = manifest.version
+                if ((curVersion != undefined) && (curVersion >= manifest.version)) {
+                    root.state = "newest"
+                } else {
+                    root.state = "available"
+                }
                 root.recoveryState = ""
-            } else {
-                root.progress = 0.7 + msg.progress * 0.3
+            }
+            onError: {
+                root.state = "error"
+                root.data = code
+            }
+        },
+        Fetcher {
+            id: dictFetcher
+            url: "https://raw.github.com/rschiang/moedict-meego/master/data/index.json"
+            onProgressChanged: { root.progress = progress * 0.6 }
+            onFinished: {
+                root.recoveryState = "updating-2"
+                indexFetcher.start()
+            }
+            onError: {
+                root.state = "error"
+                root.data = code
+            }
+        },
+        Fetcher {
+            id: indexFetcher
+            url: "https://raw.github.com/rschiang/moedict-meego/master/data/lookuptable.json"
+            onProgressChanged: { root.progress = 0.6 + progress * 0.1 }
+            onFinished: {
+                root.recoveryState = "parsing"
+                parser.start()
+            }
+            onError: {
+                root.state = "error"
+                root.data = code
+            }
+        },
+        WorkerScript {
+            id: parser
+            source: "updater.js"
+            onMessage: {
+                if (msg.completed) {
+                    appWindow.settings.set("dict.version", root.version)
+                    root.state = "newest"
+                    root.recoveryState = ""
+                } else {
+                    root.progress = 0.7 + msg.progress * 0.3
+                }
+            }
+
+            function start() {
+                sendMessage({"dict": dictFetcher.content, "index": indexFetcher.content })
             }
         }
-
-        function start() {
-            sendMessage({"dict": dictFetcher.content, "index": indexFetcher.content })
-        }
-    }
+    ]
 
     function refresh()
     {
@@ -101,8 +104,6 @@ Item {
             case "updating-2":
                 indexFetcher.cancel()
                 break
-            //case "parsing": // Cannot cancel WorkerScript
-            //    break
             }
             root.state = "available"
             root.recoveryState = ""

@@ -11,6 +11,7 @@ BaseWindow {
     Component.onCompleted: {
         database.load()
         settings.load()
+        updater.version = appWindow.settings.getDefault("dict.version", 0)
     }
 
     contentItem: Flickable {
