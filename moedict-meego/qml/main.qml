@@ -21,11 +21,14 @@ BaseWindow {
         } else {
             var last = history.get(0)
             if (last != undefined) __showEntry(last)
-            else __showEntry("成長")
+            else __showEntry("萌")
         }
     }
 
-    function __showEntry(title) { dictPage.showEntry(title) }
+    function __showEntry(title) {
+        dictPage.showEntry(title)
+        dictTab.checked = true
+    }
 
     contentItem: Flickable {
         id: contentArea

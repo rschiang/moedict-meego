@@ -33,7 +33,7 @@ Item {
             ListItem {
                 title: model.title
                 //subtitle
-                //onClicked:
+                onClicked: appWindow.history.navigate(title)
             }
         }
 

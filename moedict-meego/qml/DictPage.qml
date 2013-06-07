@@ -65,6 +65,7 @@ Item {
                         ListItem {
                             title: modelData.title
                             subtitle: (modelData.key) ? modelData.key : ""
+                            width: searchResults.width
                             onClicked: appWindow.history.navigate(title)
                         }
                     }

@@ -11,7 +11,7 @@ QtObject {
         var query = appWindow.database.execQuery("SELECT * FROM history ORDER BY date DESC", [])
         for (var i = 0; i < query.length; i++) {
             var entry = query[i]
-            var date = new Date(entry.date)
+            var date = new Date(new Number(entry.date))
             model.append(__createModel(entry.title, date))
         }
     }
@@ -61,6 +61,6 @@ QtObject {
     }
 
     function __createModel(title, date) {
-        return { "title": title, "date": date, "day": Qt.formatDate(date) }
+        return { "title": title, "date": date, "day": Qt.formatDate(date, Qt.DefaultLocaleShortDate) }
     }
 }
