@@ -47,6 +47,7 @@ OTHER_FILES += \
     qtc_packaging/debian_harmattan/control \
     qtc_packaging/debian_harmattan/compat \
     qtc_packaging/debian_harmattan/changelog \
+    moedictmeego_harmattan.desktop \
     qml/* \
     qml/BaseWindow.qml \
     qml/BaseWindow.qml \
