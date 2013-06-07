@@ -129,7 +129,7 @@ Item {
     }
 
     function navigateEntry(title) {
-        subtitle = showEntry(title)
+        var subtitle = showEntry(title)
         appWindow.pushToHistory({ "title": title, "subtitle": subtitle })
         appWindow.currentIndex = 0
     }
@@ -145,7 +145,7 @@ Item {
         if (entry === undefined) return
 
         var data = JSON.parse(entry.json.replace(/'/g, '"'))
-        var stroke = "+%n=%c".replace("%n", data.n).replace("%c", data.c)
+        var stroke = (data.c) ? ("+%n=%c".replace("%n", data.n).replace("%c", data.c)) : ""
 
         if (!data.h) return
         for (var i = 0; i < data.h.length; i++) {

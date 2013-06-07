@@ -33,9 +33,7 @@ Item {
             ListItem {
                 title: model.title
                 subtitle: model.subtitle
-                onClicked: {
-                    appWindow.navigate(model.title)
-                }
+                onClicked: view(model)
             }
         }
 
@@ -60,7 +58,6 @@ Item {
 
     function init() {
         var result = appWindow.database.execRow("SELECT COUNT(*) AS count FROM history", [])
-        JSON.stringify(result)
         if (result.count <= 0) {
             saveHistory("遠景", "ㄩㄢˇ ㄐㄧㄥˇ", new Date("2013-04-29T00:00:00Z"))
             saveHistory("開放", "ㄎㄞ ㄈㄤˋ", new Date("2013-05-02T00:00:00Z"))
@@ -75,18 +72,18 @@ Item {
         var result = appWindow.database.execQuery("SELECT * FROM history ORDER BY date ASC", [])
         historyModel.clear()
         for (var i = 0; i < result.length; i++) {
-            result[i].day = getDayName(new Date(result[i].date))
-            historyModel.append(result[i])
+            var entry = result[i]
+            var day = getDayName(new Date(entry.date))
+            historyModel.append({ "title": entry.title, "subtitle": entry.subtitle, "day": day })
         }
     }
 
-    function view(title, subtitle) {
+    function view(entry) {
         var index
         for (var i = 0; i < historyModel.count; i++)
-            if (historyModel.get(i).title == title)
+            if (historyModel.get(i).title == entry.title)
                 index = i
 
-        var entry = { "title": title, "subtitle": subtitle }
         if (index > appWindow.backStackIndex) { // Count as new
             appWindow.pushToHistory(entry)
             appWindow.currentIndex = 0
@@ -102,7 +99,9 @@ Item {
     }
 
     function pushHistory(entry) {
-        historyModel.insert(0, entry)
+        var date = entry.date ? new Date(entry.date) : new Date()
+        var day = getDayName(date)
+        historyModel.insert(0, { "title": entry.title, "subtitle": entry.subtitle, "day": day })
     }
 
     function saveHistory(title, subtitle, date) {
@@ -124,6 +123,6 @@ Item {
         if (delta <= 0) return "今天"
         if (delta <= 1) return "昨天"
         if (delta <  7) return Qt.formatDate(date, "dddd")
-        return Qt.formatDate(date, Qt.DefaultLocaleLongDate)
+        return Qt.formatDate(date)
     }
 }
