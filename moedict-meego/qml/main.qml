@@ -7,11 +7,16 @@ BaseWindow {
     property variant database: DataHolder {}
     property variant settings: AppSettings {}
     property variant updater:  AppUpdater {}
+    property bool dictionaryEnabled: true
 
     Component.onCompleted: {
         database.load()
         settings.load()
         updater.version = appWindow.settings.getDefault("dict.version", 0)
+        if (updater.version <= 0) {
+            aboutTab.checked = true
+            dictionaryEnabled = false
+        }
     }
 
     contentItem: Flickable {
@@ -63,12 +68,14 @@ BaseWindow {
         ButtonRow {
             TabButton {
                 id: dictTab
-                iconSource: "image://theme/icon-m-toolbar-list"
+                iconSource: "image://theme/icon-m-toolbar-list" + (enabled ? "": "-dimmed")
                 checked: true
+                enabled: dictionaryEnabled
             }
             TabButton {
                 id: historyTab
-                iconSource: "image://theme/icon-m-toolbar-history"
+                iconSource: "image://theme/icon-m-toolbar-history" + (enabled ? "": "-dimmed")
+                enabled: dictionaryEnabled
             }
             TabButton {
                 id: aboutTab

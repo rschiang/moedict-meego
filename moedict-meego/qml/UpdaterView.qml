@@ -17,7 +17,6 @@ Column {
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
             width: 32; height: 32; smooth: true
-            visible: root.state != ""
             source: {
                 switch (root.state) {
                     case "available":   return "image://theme/icon-m-content-third-party-update"
@@ -43,8 +42,11 @@ Column {
                     case "error":       return "更新時遇到錯誤（#%s）".replace("%s", appWindow.updater.data)
                     case "newest":      return "MoeDict 已是最新版本（%s）".replace("%s", appWindow.updater.version)
                     case "checking":    return "檢查更新……"
-                    default:            return "MoeDict 版本 %s".replace("%s", appWindow.updater.version)
                 }
+                if (appWindow.updater.version > 0)
+                    return "MoeDict 版本 %s".replace("%s", appWindow.updater.version)
+                else
+                    return "MoeDict 需要先從網路下載辭典內容。"
             }
         }
     }
