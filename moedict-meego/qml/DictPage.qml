@@ -46,7 +46,7 @@ Item {
                 onTextChanged: doSearch()
                 Keys.onReturnPressed: {
                     if (searchView.model.length > 0) {
-                        showEntry(searchView.model[0].title)
+                        appWindow.history.navigate(searchView.model[0].title)
                     } else {
                         platformCloseSoftwareInputPanel()
                         searchField.focus = false
