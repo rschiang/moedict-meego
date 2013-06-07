@@ -48,7 +48,7 @@ Item {
                     if (searchView.model.length > 0) {
                         showEntry(searchView.model[0].title)
                     } else {
-                        closeSoftwareInputPanel()
+                        platformCloseSoftwareInputPanel()
                         searchField.focus = false
                     }
                 }
@@ -64,7 +64,7 @@ Item {
                     delegate: Component {
                         ListItem {
                             title: modelData.title
-                            subtitle: (modelData.key !== undefined) ? modelData.key : ""
+                            subtitle: (modelData.key != undefined) ? modelData.key : ""
                             onClicked: showEntry(title)
                         }
                     }
@@ -76,6 +76,11 @@ Item {
                 width: parent.width
                 spacing: UiConstants.DefaultMargin / 2
                 visible: (page.state == "")
+
+                function clear() {
+                    for (var i = 0; i < children.length; i++)
+                        children[i].destroy()
+                }
             }
         }
     }
@@ -90,6 +95,24 @@ Item {
         easing.type: Easing.OutCubic
     }
 
+    Component {
+        id: topicHeaderFactory
+        DictTopicHeader {}
+    }
+
+    Component {
+        id: sectionFactory
+        SectionBubble {}
+    }
+
+    Component {
+        id: labelFactory
+        Label {
+            width: parent.width
+            wrapMode: Text.Wrap
+        }
+    }
+
     function doSearch()
     {
         var query = searchField.text
@@ -101,7 +124,7 @@ Item {
 
         var sql = (useindex) ? "SELECT key, title FROM indices WHERE key LIKE ? LIMIT 10"
                              : "SELECT title FROM entries WHERE title LIKE ? LIMIT 10"
-        var result = appWindow.database.execRow(sql, [(query+'%')])
+        var result = appWindow.database.execQuery(sql, [(query+'%')])
         searchView.model = result
     }
 
@@ -110,6 +133,43 @@ Item {
         searchField.text = ""
         searchField.platformCloseSoftwareInputPanel()
         searchField.focus = false
-        console.log(title)
+        definitionList.clear()
+
+        var entry = appWindow.database.execRow("SELECT json FROM entries WHERE title = ?", [title])
+        if (entry === undefined) return
+
+        console.log(entry.json)
+        var data = JSON.parse(entry.json.replace(/'/g, '"'))
+        var stroke = "+%n=%c".replace("%n", data.n).replace("%c", data.c)
+
+        if (!data.h) return
+        for (var i = 0; i < data.h.length; i++) {
+            var item = data.h[i]
+            topicHeaderFactory.createObject(definitionList, {
+                                                text: data.t,
+                                                category: data.r,
+                                                strokeText: stroke,
+                                                phonetics: [item.b, item.p]
+                                            })
+            if (!item.d) continue
+            var defs = {}
+            for (var j = 0; j < item.d.length; j++) {
+                var def = item.d[j]
+                if (!(def.t in defs)) defs[def.t] = ""
+
+                var sentences = [def.f]
+                if (def.e) sentences = sentences.concat(def.e)
+                if (def.q) sentences = sentences.concat(def.q)
+                if (def.l) sentences = sentences.concat(def.l)
+                var str = "<li>" + sentences.join("<br>") + "</li>"
+
+                defs[def.t] += str
+            }
+
+            for (var type in defs) {
+                sectionFactory.createObject(definitionList, { text: type })
+                labelFactory.createObject(definitionList, { text: "<ol>" + defs[type] + "</ol>" })
+            }
+        }
     }
 }

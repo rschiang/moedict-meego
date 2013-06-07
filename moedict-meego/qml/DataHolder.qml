@@ -17,13 +17,23 @@ QtObject {
                        })
     }
 
-    function execRow(query, params) {
+    function execQuery(query, params) {
         var db = getDatabase()
         var result = []
         db.readTransaction(function(tx) {
                                var rs = tx.executeSql(query, params)
                                for (var i = 0; i < rs.rows.length; i++)
                                    result.push(rs.rows.item(i))
+                           })
+        return result
+    }
+
+    function execRow(query, params) {
+        var db = getDatabase()
+        var result
+        db.readTransaction(function(tx) {
+                               var rs = tx.executeSql(query, params)
+                               result = (rs.rows.length > 0) ? rs.rows.item(0) : undefined
                            })
         return result
     }

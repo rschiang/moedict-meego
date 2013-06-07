@@ -16,6 +16,8 @@ BaseWindow {
         if (updater.version <= 0) {
             aboutTab.checked = true
             dictionaryEnabled = false
+        } else {
+            dictPage.showEntry("萌")
         }
     }
 
