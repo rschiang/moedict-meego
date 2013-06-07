@@ -64,12 +64,12 @@ QtObject {
             id: parser
             source: "updater.js"
             onMessage: {
-                if (msg.completed) {
+                if (messageObject.completed) {
                     appWindow.settings.set("dict.version", root.version)
                     root.state = "newest"
                     root.recoveryState = ""
                 } else {
-                    root.progress = 0.7 + msg.progress * 0.3
+                    root.progress = 0.7 + messageObject.progress * 0.3
                 }
             }
 
