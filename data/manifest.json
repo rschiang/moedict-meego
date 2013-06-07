@@ -4,5 +4,9 @@
 	"version": 13.0429,
 	"build": "initial",
 	"description": "",
-	"url": "http://github.com/rschiang/moedict-meego"
+	"url": "http://github.com/rschiang/moedict-meego",
+	"deps": {
+		"dict": "http://moedict-data.herokuapp.com/master/index.json",
+		"index": "http://moedict-data.herokuapp.com/master/lookuptable.json"
+	}
 }

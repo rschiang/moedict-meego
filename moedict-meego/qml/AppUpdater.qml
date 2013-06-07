@@ -24,6 +24,8 @@ QtObject {
                     root.state = "newest"
                 } else {
                     root.state = "available"
+                    if (manifest.deps.dict) dictFetcher.url = manifest.deps.dict
+                    if (manifest.deps.index) indexFetcher.url = manifest.deps.index
                 }
                 root.recoveryState = ""
             }
