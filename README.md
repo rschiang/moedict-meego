@@ -24,13 +24,17 @@ The generated files are located at `data` folder, among with description files.
 
 Getting Involved
 ----------------
+### Releases
+- v13.6.7 - Initial, with progressive search usable
+- v13.6.22 - Enable selection, copy link, and tested across different PR version
+
 ### Milestones
 - ~~Basic UI~~ (done)
 - ~~Build and include offline index~~ (done)
 - ~~Update functionality~~ (done)
   Client itself doesn't include dictionary files 
   and thus require a download ("update") during OOBE.
-- ~~Progressive search~~ (done) - v13.6.7
+- ~~Progressive search~~ (done)
 - Integrate online API
 
 ### To-dos
@@ -38,8 +42,7 @@ You can freely pick up and send us a PR! :)
 - Improve search efficiency
 - Able to show pronouncation in History page
 - Incremental updater
-- Text-selection and "search on web"
-- "Share to" feature
+- "Search on Web" and "Share to" feature
 
 Join #g0v.tw discussion on Plurk or freenode IRC.
 
