@@ -46,4 +46,13 @@ QtObject {
                        "CREATE TABLE IF NOT EXISTS history(title TEXT, date TEXT)"
                    ])
     }
+
+    function reset() {
+        execAction([
+                       "DROP TABLE entries",
+                       "DROP TABLE indices",
+                       "DROP TABLE settings",
+                       "DROP TABLE history",
+                   ])
+    }
 }

@@ -47,6 +47,13 @@ Item {
                 Image {
                     id: appIcon
                     source: "qrc:/app-icon/large"
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onPressAndHold: {
+                            //appWindow.database.reset()
+                        }
+                    }
                 }
 
                 Label {
