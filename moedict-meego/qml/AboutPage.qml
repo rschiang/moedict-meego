@@ -50,8 +50,17 @@ Item {
 
                     MouseArea {
                         anchors.fill: parent
-                        onPressAndHold: {
-                            //appWindow.database.reset()
+                        onPressAndHold: resetter.reset()
+                    }
+
+                    Loader {
+                        id: resetter
+                        onLoaded: item.queryReset()
+                        function reset() {
+                            if (source != "")
+                                item.queryReset()
+                            else
+                                source = "qrc:/qml/AppReset.qml"
                         }
                     }
                 }

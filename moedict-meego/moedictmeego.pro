@@ -65,7 +65,8 @@ OTHER_FILES += \
     qml/updater.js \
     qml/ListItem.qml \
     qml/AppHistory.qml \
-    qml/AppDatabase.qml
+    qml/AppDatabase.qml \
+    qml/AppReset.qml
 
 RESOURCES += \
     default.qrc
