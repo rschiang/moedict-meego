@@ -17,6 +17,7 @@
         <file>qml/AppHistory.qml</file>
         <file>qml/AppReset.qml</file>
         <file>qml/updater.js</file>
+        <file>qml/query.js</file>
         <file>qml/ListItem.qml</file>
     </qresource>
     <qresource prefix="/theme">

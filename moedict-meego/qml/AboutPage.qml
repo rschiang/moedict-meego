@@ -60,7 +60,7 @@ Item {
                             if (source != "")
                                 item.queryReset()
                             else
-                                source = "qrc:/qml/AppReset.qml"
+                                source = "AppReset.qml"
                         }
                     }
                 }

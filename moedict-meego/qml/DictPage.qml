@@ -70,6 +70,19 @@ Item {
                         }
                     }
                 }
+
+                Item {
+                    id: loadingIndicator
+                    width: parent.width
+                    height: UiConstants.ListItemHeightDefault
+                    visible: searcher.running
+
+                    BusyIndicator {
+                        style: BusyIndicatorStyle { size: "medium" }
+                        anchors.centerIn: parent
+                        running: parent.visible
+                    }
+                }
             }
 
             Column {
@@ -114,6 +127,26 @@ Item {
         }
     }
 
+    WorkerScript {
+        id: searcher
+        source: "query.js"
+        property bool running: false
+        property int __token: 0 // Use to identify the most recent query
+
+        onMessage: {
+            if (messageObject.token === __token) {
+                searchView.model = messageObject.result
+                running = false
+            }
+        }
+
+        function start(query, params) {
+            running = true
+            __token++
+            sendMessage({"query": query, "params": params, "token": __token})
+        }
+    }
+
     function doSearch()
     {
         var query = searchField.text
@@ -125,8 +158,9 @@ Item {
 
         var sql = (useindex) ? "SELECT key, title FROM indices WHERE key LIKE ? LIMIT 10"
                              : "SELECT title FROM entries WHERE title LIKE ? LIMIT 10"
-        var result = appWindow.database.execQuery(sql, [(query+'%')])
-        searchView.model = result
+
+        searchView.model = undefined
+        searcher.start(sql, [(query+'%')])
     }
 
     function showEntry(title)
