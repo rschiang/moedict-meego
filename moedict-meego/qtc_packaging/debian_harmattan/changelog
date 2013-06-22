@@ -1,3 +1,8 @@
+moedict-meego (13.6.22) unstable; urgency=low
+  * Fix issue #2, #3
+
+ -- Poren Chiang <rschiang@unknown>  Sat, 22 Jun 2013 19:40:09 +0800
+
 moedict-meego (13.6.7) unstable; urgency=low
   * First usable deployment
 
