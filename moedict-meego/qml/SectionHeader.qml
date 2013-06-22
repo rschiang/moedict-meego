@@ -5,7 +5,7 @@ Item {
     anchors.left: parent.left
     anchors.right: parent.right
     implicitWidth: parent.width
-    implicitHeight: label.implicitHeight
+    implicitHeight: label.implicitHeight + UiConstants.DefaultMargin
     property alias text: label.text
 
     BorderImage {
@@ -15,12 +15,13 @@ Item {
         anchors.left: parent.left
         anchors.right: label.left
         anchors.rightMargin: UiConstants.DefaultMargin / 2
-        anchors.verticalCenter: label.verticalCenter
+        anchors.verticalCenter: parent.verticalCenter
     }
 
     Label {
         id: label
         anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
         font: UiConstants.GroupHeaderFont
     }
 }
