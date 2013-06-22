@@ -33,7 +33,8 @@ CONFIG += qdeclarative-boostable
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    qdeclarativefetcher.cpp
+    qdeclarativefetcher.cpp \
+    qdeclarativeclipboard.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -73,4 +74,5 @@ RESOURCES += \
     default.qrc
 
 HEADERS += \
-    qdeclarativefetcher.h
+    qdeclarativefetcher.h \
+    qdeclarativeclipboard.h

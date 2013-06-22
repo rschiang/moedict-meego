@@ -111,7 +111,12 @@ Item {
 
     Component {
         id: topicHeaderFactory
-        DictTopicHeader {}
+        DictTopicHeader {
+            MouseArea {
+                anchors.fill: parent
+                onPressAndHold: entryMenu.open()
+            }
+        }
     }
 
     Component {
@@ -125,6 +130,21 @@ Item {
             width: parent.width
             wrapMode: Text.Wrap
             platformSelectable: true
+        }
+    }
+
+    ContextMenu {
+        id: entryMenu
+        MenuLayout {
+            MenuItem {
+                text: "複製連結"
+                onClicked: clipboard.text = "https://www.moedict.tw/#" + appWindow.history.get(0)
+            }
+
+            MenuItem {
+                text: "在瀏覽器開啟條目"
+                onClicked: Qt.openUrlExternally("https://www.moedict.tw/#" + appWindow.history.get(0))
+            }
         }
     }
 
