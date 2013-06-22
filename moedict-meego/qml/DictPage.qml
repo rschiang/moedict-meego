@@ -124,6 +124,7 @@ Item {
         Label {
             width: parent.width
             wrapMode: Text.Wrap
+            platformSelectable: true
         }
     }
 
