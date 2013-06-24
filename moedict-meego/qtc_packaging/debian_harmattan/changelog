@@ -1,25 +1,30 @@
-moedict-meego (13.6.22) unstable; urgency=low
-  * Fix issue #2, #3
+moedict-meego (13.6.24) unstable; urgency=low
+  * Performance and history interface improvements.
 
- -- Poren Chiang <rschiang@unknown>  Sat, 22 Jun 2013 19:40:09 +0800
+ -- Poren Chiang <ren.chiang@gmail.com>  Mon, 24 Jun 2013 23:23:47 +0800
+
+moedict-meego (13.6.22) unstable; urgency=low
+  * Fix issue #2, #3.
+
+ -- Poren Chiang <ren.chiang@gmail.com>  Sat, 22 Jun 2013 19:40:09 +0800
 
 moedict-meego (13.6.7) unstable; urgency=low
-  * First usable deployment
+  * Basic dictionary functionalities implemented. First release.
 
- -- Poren Chiang <rschiang@unknown>  Fri, 07 Jun 2013 22:59:17 +0800
+ -- Poren Chiang <ren.chiang@gmail.com>  Fri, 07 Jun 2013 22:59:17 +0800
 
 moedict-meego (13.5.25) unstable; urgency=low
-  * <Add change description here>
+  * UI construction completed, available for concept demonstration.
 
- -- Poren Chiang <rschiang@unknown>  Sat, 25 May 2013 00:42:37 +0800
+ -- Poren Chiang <ren.chiang@gmail.com>  Sat, 25 May 2013 00:42:37 +0800
 
 moedict-meego (13.5.14) unstable; urgency=low
-  * <Add change description here>
+  * Development started.
 
- -- Poren Chiang <rschiang@unknown>  Tue, 14 May 2013 02:43:57 +0800
+ -- Poren Chiang <ren.chiang@gmail.com>  Tue, 14 May 2013 02:43:57 +0800
 
 moedict-meego (0.0.1) unstable; urgency=low
 
-  * Initial Release.
+  * Project created.
 
- -- Poren Chiang <rschiang@unknown>  Fri, 10 May 2013 00:27:58 +0800
+ -- Poren Chiang <ren.chiang@gmail.com>  Fri, 10 May 2013 00:27:58 +0800
