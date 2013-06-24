@@ -8,6 +8,8 @@ Item {
     height: parent.itemHeight
     state: (searchField.text.length > 0) ? "search" : ""
 
+    property string __cachedEntry
+
     AppViewHeader {
         id: header
         text: "萌典"
@@ -26,6 +28,12 @@ Item {
         contentWidth: width
         contentHeight: contentArea.height + contentArea.anchors.margins * 2
         clip: true
+
+        MouseArea {
+            anchors.fill: parent
+            enabled: (page.state == "")
+            onPressAndHold: menuLoader.item.open()
+        }
 
         Column {
             id: contentArea
@@ -111,12 +119,7 @@ Item {
 
     Component {
         id: topicHeaderFactory
-        DictTopicHeader {
-            MouseArea {
-                anchors.fill: parent
-                onPressAndHold: menuLoader.item.show(parent.text)
-            }
-        }
+        DictTopicHeader {}
     }
 
     Component {
@@ -219,6 +222,7 @@ Item {
             }
         }
 
+        __cachedEntry = title
         return data.h[0].b
     }
 }

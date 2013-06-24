@@ -5,8 +5,6 @@ ContextMenu {
     id: menu
     visualParent: appWindow
 
-    property string __cachedEntry
-
     MenuLayout {
         MenuItem {
             text: "複製連結"
@@ -17,10 +15,5 @@ ContextMenu {
             text: "在瀏覽器開啟條目"
             onClicked: Qt.openUrlExternally("https://www.moedict.tw/#" + __cachedEntry)
         }
-    }
-
-    function show(title) {
-        __cachedEntry = title
-        open()
     }
 }
