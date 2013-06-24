@@ -19,6 +19,9 @@
         <file>qml/updater.js</file>
         <file>qml/query.js</file>
         <file>qml/ListItem.qml</file>
+        <file>qml/ext/FastScroll.js</file>
+        <file>qml/ext/FastScroll.qml</file>
+        <file>qml/ext/FastScrollStyle.qml</file>
     </qresource>
     <qresource prefix="/theme">
         <file alias="app-meegotouch-view-header-fixed-pressed">theme/app-meegotouch-view-header-fixed-pressed.png</file>

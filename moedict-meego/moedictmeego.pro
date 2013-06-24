@@ -68,7 +68,8 @@ OTHER_FILES += \
     qml/AppHistory.qml \
     qml/AppDatabase.qml \
     qml/AppReset.qml \
-    qml/query.js
+    qml/query.js \
+    qml/ext/*
 
 RESOURCES += \
     default.qrc
