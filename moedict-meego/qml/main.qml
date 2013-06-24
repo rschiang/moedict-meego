@@ -20,8 +20,8 @@ BaseWindow {
             dictionaryEnabled = false
         } else {
             var last = history.get(0)
-            if (last != undefined) __showEntry(last)
-            else __showEntry("萌")
+            if (last == undefined) last = "萌"
+            __showEntry(last)
         }
     }
 
@@ -72,8 +72,10 @@ BaseWindow {
             platformIconId: "toolbar-previous"
             anchors.verticalCenter: parent.verticalCenter
             onClicked: {
-                if (history.canGoBack) history.back()
-                else Qt.quit()
+                if (dictTab.checked)
+                    if (history.canGoBack) history.back()
+                    else Qt.quit()
+                else dictTab.checked = true
             }
         }
 

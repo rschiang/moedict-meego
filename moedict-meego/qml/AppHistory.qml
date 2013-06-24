@@ -6,6 +6,7 @@ QtObject {
     property ListModel model: ListModel {}
     property variant __backStack: []
     property variant __forwardStack: []
+    property string current: ""
 
     function load() {
         var query = appWindow.database.execQuery("SELECT * FROM history ORDER BY date DESC", [])
@@ -20,28 +21,31 @@ QtObject {
         if (!canGoBack) return
         var bs = __backStack
         var fs = __forwardStack
-        var entry = bs.pop()
-        fs.push(entry)
+        fs.push(current)
+        current = bs.pop()
         __backStack = bs
         __forwardStack = fs
-        appWindow.__showEntry(entry)
+        appWindow.__showEntry(current)
     }
 
     function forward() {
         if (!canGoForward) return
         var bs = __backStack
         var fs = __forwardStack
-        var entry = fs.pop()
-        bs.push(entry)
+        bs.push(current)
+        current = fs.pop()
         __backStack = bs
         __forwardStack = fs
-        appWindow.__showEntry(entry)
+        appWindow.__showEntry(current)
     }
 
     function navigate(title) {
-        var bs = __backStack
-        bs.push(title)
-        __backStack = bs
+        if (current != "") {
+            var bs = __backStack
+            bs.push(current)
+            __backStack = bs
+        }
+        current = title
         __forwardStack = []
         appWindow.database.execAction({"INSERT INTO history (title,date) VALUES (?,?)": [title, Date.parse(new Date())]})
         model.insert(0, __createModel(title, new Date()))
