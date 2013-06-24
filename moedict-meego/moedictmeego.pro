@@ -50,25 +50,6 @@ OTHER_FILES += \
     qtc_packaging/debian_harmattan/changelog \
     moedictmeego_harmattan.desktop \
     qml/* \
-    qml/BaseWindow.qml \
-    qml/BaseWindow.qml \
-    qml/DictPage.qml \
-    qml/HistoryPage.qml \
-    qml/AboutPage.qml \
-    qml/AppViewHeader.qml \
-    qml/SearchField.qml \
-    qml/SectionBubble.qml \
-    qml/SectionHeader.qml \
-    qml/DictTopicHeader.qml \
-    qml/AppSettings.qml \
-    qml/AppUpdater.qml \
-    qml/UpdaterView.qml \
-    qml/updater.js \
-    qml/ListItem.qml \
-    qml/AppHistory.qml \
-    qml/AppDatabase.qml \
-    qml/AppReset.qml \
-    qml/query.js \
     qml/ext/*
 
 RESOURCES += \
