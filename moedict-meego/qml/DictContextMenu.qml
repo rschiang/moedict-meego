@@ -3,7 +3,6 @@ import com.nokia.meego 1.0
 
 ContextMenu {
     id: menu
-    visualParent: appWindow
 
     MenuLayout {
         MenuItem {
