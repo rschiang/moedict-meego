@@ -50,7 +50,8 @@ OTHER_FILES += \
     qtc_packaging/debian_harmattan/changelog \
     moedictmeego_harmattan.desktop \
     qml/* \
-    qml/ext/*
+    qml/ext/* \
+    qml/DictContextMenu.qml
 
 RESOURCES += \
     default.qrc

@@ -2,25 +2,32 @@
     <qresource prefix="/">
         <file>qml/main.qml</file>
         <file>qml/BaseWindow.qml</file>
+
         <file>qml/DictPage.qml</file>
         <file>qml/HistoryPage.qml</file>
         <file>qml/AboutPage.qml</file>
+
         <file>qml/AppViewHeader.qml</file>
+        <file>qml/ListItem.qml</file>
         <file>qml/SearchField.qml</file>
         <file>qml/SectionBubble.qml</file>
         <file>qml/SectionHeader.qml</file>
+
         <file>qml/DictTopicHeader.qml</file>
+        <file>qml/DictContextMenu.qml</file>
         <file>qml/UpdaterView.qml</file>
+
         <file>qml/AppDatabase.qml</file>
         <file>qml/AppSettings.qml</file>
         <file>qml/AppUpdater.qml</file>
         <file>qml/AppHistory.qml</file>
         <file>qml/AppReset.qml</file>
+
         <file>qml/updater.js</file>
         <file>qml/query.js</file>
-        <file>qml/ListItem.qml</file>
-        <file>qml/ext/FastScroll.js</file>
+
         <file>qml/ext/FastScroll.qml</file>
+        <file>qml/ext/FastScroll.js</file>
         <file>qml/ext/FastScrollStyle.qml</file>
     </qresource>
     <qresource prefix="/theme">

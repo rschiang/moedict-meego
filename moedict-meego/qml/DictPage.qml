@@ -114,7 +114,7 @@ Item {
         DictTopicHeader {
             MouseArea {
                 anchors.fill: parent
-                onPressAndHold: entryMenu.show(parent.text)
+                onPressAndHold: menuLoader.item.show(parent.text)
             }
         }
     }
@@ -133,26 +133,10 @@ Item {
         }
     }
 
-    ContextMenu {
-        id: entryMenu
-        property string __cachedEntry
-
-        MenuLayout {
-            MenuItem {
-                text: "複製連結"
-                onClicked: clipboard.text = "https://www.moedict.tw/#" + entryMenu.__cachedEntry
-            }
-
-            MenuItem {
-                text: "在瀏覽器開啟條目"
-                onClicked: Qt.openUrlExternally("https://www.moedict.tw/#" + entryMenu.__cachedEntry)
-            }
-        }
-
-        function show(title) {
-            __cachedEntry = title
-            open()
-        }
+    Loader {
+        id: menuLoader
+        source: "DictContextMenu.qml"
+        anchors.fill: parent
     }
 
     WorkerScript {
