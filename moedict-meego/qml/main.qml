@@ -20,8 +20,7 @@ BaseWindow {
             dictionaryEnabled = false
         } else {
             var last = history.get(0)
-            if (last == undefined) last = "萌"
-            __showEntry(last)
+            __showEntry((last != undefined) ? last : "萌")
         }
     }
 

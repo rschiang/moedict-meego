@@ -8,7 +8,7 @@ Item {
     height: parent.itemHeight
     state: (searchField.text.length > 0) ? "search" : ""
 
-    property string __cachedEntry
+    property string __current // Displayed entry might not be recorded in history
 
     AppViewHeader {
         id: header
@@ -222,7 +222,7 @@ Item {
             }
         }
 
-        __cachedEntry = title
+        __current = title
         return data.h[0].b
     }
 }
