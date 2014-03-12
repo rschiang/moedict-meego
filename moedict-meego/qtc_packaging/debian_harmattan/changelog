@@ -1,3 +1,8 @@
+moedict-meego (14.3.12) stable; urgency=low
+  * Update application icon for a more Harmattan-like approach.
+
+ -- Poren Chiang <ren.chiang@gmail.com>  Wed, 12 Mar 2014 09:55:30 +0800
+
 moedict-meego (13.6.24) unstable; urgency=low
   * Performance and history interface improvements.
 
